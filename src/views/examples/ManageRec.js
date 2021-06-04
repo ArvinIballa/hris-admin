@@ -23,6 +23,7 @@ import {
 import { v4 as uuidv4 } from 'uuid';
 // core components
 import UserHeader from "components/Headers/UserHeader.js";
+import HeaderMR from "components/Headers/HeaderMR";
 
 function ManageRecords  ( props )  {
   
@@ -206,7 +207,7 @@ const handleAddFields9 = () => {
 
   return (
     <>
-      <UserHeader />
+      <HeaderMR />
       {/* Page content */}
       <Container className="mt--7" fluid>
         <Row>

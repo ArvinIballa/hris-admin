@@ -7,6 +7,7 @@ import { PropTypes } from "prop-types";
 
 // reactstrap components
 import {
+ 
   Collapse,
   DropdownMenu,
   DropdownItem,
@@ -18,11 +19,12 @@ import {
   NavItem,
   NavLink,
   Nav,
-
   Container,
   Row,
   Col,
 } from "reactstrap";
+
+import logo from "../../assets/img/brand/argon-react.png";
 
 var ps;
 
@@ -59,19 +61,7 @@ const Sidebar = (props) => {
     });
   };
 
-  const { bgColor, routes, logo } = props;
-  let navbarBrandProps;
-  if (logo && logo.innerLink) {
-    navbarBrandProps = {
-      to: logo.innerLink,
-      tag: Link,
-    };
-  } else if (logo && logo.outterLink) {
-    navbarBrandProps = {
-      href: logo.outterLink,
-      target: "_blank",
-    };
-  }
+
 
   return (
     <Navbar
@@ -89,15 +79,11 @@ const Sidebar = (props) => {
           <span className="navbar-toggler-icon" />
         </button>
         {/* Brand */}
-        {logo ? (
-          <NavbarBrand className="pt-0" {...navbarBrandProps}>
-            <img
-              alt={logo.imgAlt}
-              className="navbar-brand-img"
-              src={logo.imgSrc}
-            />
+          <NavbarBrand className="pt-0" >
+            <img  src={logo}
+              className="navbar-brand-img" ></img>
           </NavbarBrand>
-        ) : null}
+        
         {/* User */}
         <Nav className="align-items-center d-md-none">
           <UncontrolledDropdown nav>
@@ -162,19 +148,12 @@ const Sidebar = (props) => {
           {/* Collapse header */}
           <div className="navbar-collapse-header d-md-none">
             <Row>
-              {logo ? (
+            
                 <Col className="collapse-brand" xs="6">
-                  {logo.innerLink ? (
-                    <Link to={logo.innerLink}>
-                      <img alt={logo.imgAlt} src={logo.imgSrc} />
-                    </Link>
-                  ) : (
-                    <a href={logo.outterLink}>
-                      <img alt={logo.imgAlt} src={logo.imgSrc} />
-                    </a>
-                  )}
+                
+                
                 </Col>
-              ) : null}
+          
               <Col className="collapse-close" xs="6">
                 <button
                   className="navbar-toggler"
@@ -192,14 +171,14 @@ const Sidebar = (props) => {
            <Nav navbar >
             {/* <NavLink style={{marginLeft: "-3px"}}><i className="ni ni-tv-2 text-blue"></i><Link  to="admin/index" style={{color:"black"}}>Dashboard</Link></NavLink> */}
             <NavLink activeClassName="active" disabled  style={{marginLeft: "-3px"}}><i className="ni ni-badge text-blue"></i><Link to="/admin/icons" activeStyle={{color: "red"}} style={{color:"black"}}>Employee Management</Link></NavLink>
-            <NavLink activeClassName="active" ><Link to="/admin/EmployeeReg" style={{color:"black", marginLeft: "42px", fontWeight: "lighter"}}>Employee Registration</Link></NavLink>
+            <NavLink activeClassName="active" ><Link to="/admin/EmployeeRegistration" style={{color:"black", marginLeft: "42px", fontWeight: "lighter"}}>Employee Registration</Link></NavLink>
             <NavLink activeClassName="active" ><Link to="/admin/EmployeeList" style={{color:"black", marginLeft: "42px", fontWeight: "lighter"}}>Employee List</Link></NavLink>
-            <NavLink activeClassName="active" style={{marginLeft: "-3px"}}><i className="ni ni-archive-2 text-blue"></i><Link to="/admin/leavesmng" style={{color:"black"}}>Leaves Management</Link></NavLink>
-            <NavLink activeClassName="active" style={{marginLeft: "-3px"}}><i className="ni ni-notification-70 text-blue"></i><Link to="/admin/memolist" style={{color:"black"}}>Announcements & Memos</Link></NavLink>
+            <NavLink activeClassName="active" style={{marginLeft: "-3px"}}><i className="ni ni-archive-2 text-blue"></i><Link to="/admin/LeavesManagement" style={{color:"black"}}>Leaves Management</Link></NavLink>
+            <NavLink activeClassName="active" style={{marginLeft: "-3px"}}><i className="ni ni-notification-70 text-blue"></i><Link to="/admin/Announcements&Memos" style={{color:"black"}}>Announcements & Memos</Link></NavLink>
             {/* <NavLink activeClassName="active" style={{marginLeft: "-3px"}}><i className="text-blue"><FaClipboardList/></i><Link to="/admin/maps" style={{color:"black"}}>Employee Engagement</Link></NavLink> */}
             <NavLink activeClassName="active" disabled style={{marginLeft: "-3px"}}><i className="ni ni-money-coins text-blue"></i><Link to="/admin/Tables" style={{color:"black" }}>Payroll Management</Link></NavLink>
             <NavLink activeClassName="active" ><Link to="/admin/UploadFiles" style={{color:"black", marginLeft: "42px", fontWeight: "lighter"}}>Upload Files</Link></NavLink>
-            <NavLink activeClassName="active" ><Link to="/admin/GovDeduct" style={{color:"black", marginLeft: "42px", fontWeight: "lighter"}}>Government Deductions</Link></NavLink>
+            <NavLink activeClassName="active" ><Link to="/admin/GovernmentDeduction" style={{color:"black", marginLeft: "42px", fontWeight: "lighter"}}>Government Deductions</Link></NavLink>
             <NavLink activeClassName="active" ><Link to="/admin/AttendanceArchive" style={{color:"black", marginLeft: "42px", fontWeight: "lighter"}}>Attendance Logs Archives</Link></NavLink>
           </Nav>
          

@@ -17,7 +17,7 @@ const Login = () => {
                   className="font-weight-bold ml-1"
                   href="http://www.youtube.com"
                 >
-                  Creative Tim
+                  Minedomain Inc.
                 </a>
               </div>
 

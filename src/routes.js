@@ -23,14 +23,6 @@ var routes = [
     layout: "/admin",
   },
   {
-    path: "/AttendanceArchive",
-    name: "Attendance Logs Archive",
-    icon: "ni ni-planet text-blue",
-    component: AttendanceArchive,
-    layout: "/admin",
-  },
- 
-  {
     path: "/user-profile",
     name: "User Profile",
     icon: "ni ni-single-02 text-yellow",
@@ -58,45 +50,41 @@ var routes = [
     component: Register,
     layout: "/auth",
   },
-
   {
-    path: "/managefiles",
-    name: "Manage Files",
-    component: ManageFiles,
-    layout: "/admin",
-  },
-  {
-    path: "/employeereg",
+    path: "/EmployeeRegistration",
     name: "Employee Registration",
     component: EmployeeReg,
     layout: "/admin",
   },
   {
-    path: "/employeelist",
+    path: "/EmployeeList",
     name: "Employee List",
     component: EmployeeList,
     layout: "/admin",
   },
   {
-    path: "/attendancelogs",
-    name: "Attendance Logs",
+    path: "/ManageRecords",
+    component: ManageRec,
+    layout: "/admin",
+  },
+  {
+    path: "/ManageFiles",
+    component: ManageFiles,
+    layout: "/admin",
+  },
+  {
+    path: "/AttendanceLogs",
     component: AttendanceLogs,
     layout: "/admin",
   },
   {
-    path: "/leavesmng",
+    path: "/LeavesManagement",
     name: "Leaves Management",
     component: LeavesMng,
     layout: "/admin",
   },
   {
-    path: "/managerec",
-    name: "Manage Records",
-    component: ManageRec,
-    layout: "/admin",
-  },
-  {
-    path: "/memolist",
+    path: "/Announcements&Memos",
     name: "Announcements and Memos",
     component: MemoList,
     layout: "/admin",
@@ -108,12 +96,18 @@ var routes = [
     layout: "/admin",
   },
   {
-    path: "/GovDeduct",
+    path: "/GovernmentDeduction",
     name: "Government Deductions",
     component: GovDeduct,
     layout: "/admin",
   },
-  
+  {
+    path: "/AttendanceArchive",
+    name: "Attendance Logs Archive",
+    icon: "ni ni-planet text-blue",
+    component: AttendanceArchive,
+    layout: "/admin",
+  },
 
 ];
 export default routes;

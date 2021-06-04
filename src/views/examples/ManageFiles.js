@@ -25,6 +25,7 @@ import {
 // core components
 import Header from "components/Headers/Header.js";
 import DropZone from "components/Dropzone/dropzone.js";
+import HeaderMF from "components/Headers/HeaderMF";
 
 
 
@@ -41,7 +42,7 @@ const Icons = () => {
    
   return (
     <>
-      <Header />
+      <HeaderMF />
       {/* Page content */}
       <Container className="mt--7" fluid>
         {/* Table */}

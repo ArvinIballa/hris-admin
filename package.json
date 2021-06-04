@@ -13,7 +13,7 @@
     "argon-dashboard",
     "argon-dashboard-react"
   ],
-  "homepage": "https://hris-admin.herokuapp.com",
+  "homepage": "https://hris-1-ibnu99bxt-manongzkie1515.vercel.app",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

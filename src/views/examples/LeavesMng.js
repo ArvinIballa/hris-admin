@@ -16,6 +16,7 @@ import {
   PaginationLink,
   Table,
   Container,
+  Col,
   Row,
   Modal, 
   ModalHeader, 
@@ -47,10 +48,18 @@ const Maps = () => {
     const [open, openModal] = useState(false);
     const toggs = () => openModal(!open);
 
+    const [isOpen, modalIsOpen] = useState(false);
+    const toggle2 = () => modalIsOpen(!isOpen);
+
+    const [openDenie, openModalDenie] = useState(false);
+    const toggle3 = () => openModalDenie(!openDenie);
+
     const [closeAll, setCloseAll] = useState(false);
 
     const toggleAll = () => {
+        modalIsOpen(!open);
         openModal(!open);
+        openModalDenie(!open);
         setCloseAll(true);
       }
 
@@ -112,29 +121,72 @@ const Maps = () => {
                           <i className="fas fa-ellipsis-v" />
                         </DropdownToggle>
                         <DropdownMenu className="dropdown-menu-arrow" right>
-                          <DropdownItem onClick={toggle} data-toggle="modal">Mark As Unapproved
-                          </DropdownItem>
-                          <DropdownItem onClick={toggle}>Mark As Approved
-                          </DropdownItem>
-                          <Modal size="md"centered isOpen={modal} toggle={toggle} >
-                            <ModalHeader style={{borderBottom: "2px solid #E5ECF3"}} stoggle={toggle} charCode="X"><h2>Confirmation</h2></ModalHeader>
-                            <ModalBody style={{height: "100px"}}>
-                                Are you sure you want to approve this leave?
-                            </ModalBody>
-                            <ModalFooter style={{borderTop: "2px solid #E5ECF3"}}>
-                            <Button color="success" onClick={toggs}  data-dismiss="modal">Approve</Button>
-                                 <Modal size="md"centered isOpen={open} toggle={toggs} onClosed={closeAll ? toggle : undefined} >
-                                    <ModalHeader style={{borderBottom: "2px solid #E5ECF3"}} stoggle={toggs}><h2>Success!</h2></ModalHeader>
-                                    <ModalBody style={{height: "100px"}}>
-                                        Leave is mark as approved!
-                                    </ModalBody>
+                          <DropdownItem onClick={toggle}>Mark As Approved</DropdownItem>
+                            <Modal size="md"centered isOpen={modal} toggle={toggle} >
+                              <ModalHeader style={{borderBottom: "2px solid #E5ECF3"}} stoggle={toggle} charCode="X"><h2>Confirmation</h2></ModalHeader>
+                                <ModalBody style={{height: "100px"}}>
+                                    Are you sure you want to approve this leave?
+                                </ModalBody>
+                                  <ModalFooter style={{borderTop: "2px solid #E5ECF3"}}>
+                                    <Button color="success" onClick={toggs}  data-dismiss="modal">Approve</Button>
+                                      <Modal size="md"centered isOpen={open} toggle={toggs} onClosed={closeAll ? toggle : undefined} >
+                                          <ModalHeader style={{borderBottom: "2px solid #E5ECF3"}} stoggle={toggs}><h2>Success!</h2></ModalHeader>
+                                          <ModalBody style={{height: "100px"}}>
+                                              Leave is mark as approved!
+                                          </ModalBody>
+                                          <ModalFooter style={{borderTop: "2px solid #E5ECF3"}}>
+                                          <Button color="success" onClick={toggleAll} >Ok</Button>{' '}
+                                          </ModalFooter>
+                                      </Modal>
+                                  </ModalFooter>
+                            </Modal>
+                          <DropdownItem onClick={toggle2} data-toggle="modal">Mark As Not Approved</DropdownItem>
+                            <Modal size="lg"centered isOpen={isOpen} toggle={toggle2} >
+                                <ModalHeader style={{borderBottom: "2px solid #E5ECF3"}} stoggle={toggle2} charCode="X"><h2>Deny Leave</h2>
+                                </ModalHeader>
+                                  <ModalBody style={{height: "300px", display: "flex"}}>
+                                    <h3 style={{marginRight: "50px"}}>Reason : </h3>
+                                  <Col sm="10">
+                                    <FormGroup row>
+                                      <Col>
+                                        <div className="pl-lg-0">
+                                              <FormGroup>
+                                              
+                                                <Input
+                                                  className="form-control-alternative"
+                                              
+                                                  rows="10"
+                                              
+                                                  type="textarea"
+                                                />
+                                              </FormGroup>
+                                        </div>
+                                      </Col >
+                                    </FormGroup>
+                                  </Col>
+                                  </ModalBody>
                                     <ModalFooter style={{borderTop: "2px solid #E5ECF3"}}>
-                                    <Button color="success" onClick={toggleAll} >Ok</Button>{' '}
+                                      <Button color="primary" onClick={toggs} data-dismiss="modal">Submit</Button>  
+                                        <Modal size="md"centered isOpen={open} toggle={toggs} onClosed={closeAll ? toggle : undefined} >
+                                            <ModalHeader style={{borderBottom: "2px solid #E5ECF3"}} stoggle={toggs}><h2>Confirmation!</h2></ModalHeader>
+                                            <ModalBody style={{height: "100px"}}>
+                                                Are you sure you want to deny this leave?
+                                            </ModalBody>
+                                            <ModalFooter style={{borderTop: "2px solid #E5ECF3"}}>
+                                            <Button color="danger" onClick={toggle3} data-dismiss="modal">Deny</Button>
+                                                <Modal size="md"centered isOpen={openDenie} toggle={toggle3} onClosed={closeAll ? toggle : undefined} >
+                                                    <ModalHeader style={{borderBottom: "2px solid #E5ECF3"}} stoggle={toggle3}><h2>Deny Leave</h2></ModalHeader>
+                                                    <ModalBody style={{height: "100px"}}>
+                                                        Leave is denied.
+                                                    </ModalBody>
+                                                    <ModalFooter style={{borderTop: "2px solid #E5ECF3"}}>
+                                                    <Button color="success" onClick={toggleAll} >Ok</Button>{' '}
+                                                    </ModalFooter>
+                                                </Modal>
+                                            </ModalFooter>
+                                        </Modal> 
                                     </ModalFooter>
-                                </Modal>
-                            </ModalFooter>
-                           
-                        </Modal>
+                            </Modal>
                         </DropdownMenu>
                       </UncontrolledDropdown>
                     </td>
@@ -198,7 +250,35 @@ const Maps = () => {
                       </UncontrolledDropdown>
                     </td>
                   </tr>
-                  
+                  <tr>
+                  <th scope="row">2021-ABC</th>
+                    <td>RJ Lopez</td>
+                    <td>Vacation Leave</td>
+                    <td>06/02/2021</td>
+                    <td>5</td>
+                   
+                    <td >
+                      <Badge style={{backgroundColor: "red", color: "white"}}>DENIED - </Badge>
+                    </td>
+                    <td className="text-right">
+                      <UncontrolledDropdown>
+                        <DropdownToggle
+                          className="btn-icon-only text-light"
+                          href="#pablo"
+                          role="button"
+                          size="sm"
+                          color=""
+                          onClick={(e) => e.preventDefault()}
+                        >
+                          <i className="fas fa-ellipsis-v" />
+                        </DropdownToggle>
+                        <DropdownMenu className="dropdown-menu-arrow" right>
+                          <DropdownItem href="icons">Mark As Approved
+                          </DropdownItem>
+                        </DropdownMenu>
+                      </UncontrolledDropdown>
+                    </td>
+                  </tr>
                   
                 </tbody>
               </Table>

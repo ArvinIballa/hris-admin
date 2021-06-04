@@ -23,6 +23,7 @@ import {
 
 // core components
 import Header from "components/Headers/Header.js";
+import HeaderVAL from "components/Headers/HeaderVAL";
 
 const MapWrapper = () => {
   const mapRef = React.useRef(null);
@@ -117,7 +118,7 @@ const MapWrapper = () => {
 const Maps = () => {
   return (
     <>
-      <Header />
+      <HeaderVAL />
       {/* Page content */}
       <Container className="mt--7" fluid>
         <Row>

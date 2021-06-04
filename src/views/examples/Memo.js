@@ -20,7 +20,7 @@ function Memo({ memos, completeMemo, removeMemo }) {
 
      
                         
-                            <Col xl="12" style={{width: "450px"}}>
+                            <Col xl="12" style={{width: "350px"}}>
                                         <Card style={{padding:25}}>
                                         <CardTitle  key={memo.id} onClick={() => completeMemo(memo.id)} tag="h2">{memo.text2}</CardTitle>
                                         <CardSubtitle tag="h6" className="mb-2 text-muted">From: Janet Doe  <label class="d-flex flex-row-reverse"> {new Date().getMonth()}/{new Date().getDate()}/{new Date().getFullYear()} </label></CardSubtitle>

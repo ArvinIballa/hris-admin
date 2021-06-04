@@ -617,6 +617,9 @@ function Profile  ()  {
                         </FormGroup>
                       </Col>
                     </Row>
+                    <span class="d-flex flex-row-reverse mx-6"  >
+                        <button type="button" class="btn btn-success" >Save</button>
+                    </span>
                   </div>
 
 
@@ -1099,7 +1102,7 @@ function Profile  ()  {
                  
                
                         <span class="d-flex flex-row-reverse mx-6"  >
-                        <button type="button" class="btn btn-success" onClick={handleAddFields}>Add Row</button>
+                        <button type="button" class="btn btn-primary" onClick={handleAddFields}>Add Row</button>
                         </span>
 
                         { inputFields.map(inputField => (
@@ -1252,7 +1255,7 @@ function Profile  ()  {
                   
                    
                         <span class="d-flex flex-row-reverse mx-6"  >
-                        <button type="button" class="btn btn-success" onClick={handleAddFields2}>Add Row</button>
+                        <button type="button" class="btn btn-primary" onClick={handleAddFields2}>Add Row</button>
                         </span>
                         
                         { inputFields2.map(inputField2 => (
@@ -1304,6 +1307,11 @@ function Profile  ()  {
                           </div>
                           )) }
 
+
+                           <span class="d-flex flex-row-reverse mx-6"  >
+                          <button type="button" class="btn btn-success" >Save</button>
+                          </span>
+
                     {/* ---------------------------------------------------- */}
                     <Row className="align-items-center">
                       <Col xs="8">
@@ -1313,7 +1321,7 @@ function Profile  ()  {
                       {/* ---------------------------------------------------- */}
 
                       <span class="d-flex flex-row-reverse mx-6"  >
-                        <button type="button" class="btn btn-success" onClick={handleAddFields3}>Add Row</button>
+                        <button type="button" class="btn btn-primary" onClick={handleAddFields3}>Add Row</button>
                         </span>
                         
                         { inputFields3.map(inputField3 => (
@@ -1508,7 +1516,12 @@ function Profile  ()  {
                        </Col>
                           </div>
                           </div>
+                          
                           )) }
+
+                    <span class="d-flex flex-row-reverse mx-6"  >
+                        <button type="button" class="btn btn-success" >Save</button>
+                    </span>
 
                        {/* ---------------------------------------------------- */}
                        <Row className="align-items-center">
@@ -1752,7 +1765,7 @@ function Profile  ()  {
                      </Row>
 
                      <span class="d-flex flex-row-reverse mx-6"  >
-                        <button type="button" class="btn btn-success" onClick={handleAddFields4}>Add Row</button>
+                        <button type="button" class="btn btn-primary" onClick={handleAddFields4}>Add Row</button>
                         </span>
 
                         { inputFields4.map(inputField4 => (
@@ -1962,7 +1975,7 @@ function Profile  ()  {
                      </Row>
 
                      <span class="d-flex flex-row-reverse mx-6"  >
-                        <button type="button" class="btn btn-success" onClick={handleAddFields5}>Add Row</button>
+                        <button type="button" class="btn btn-primary" onClick={handleAddFields5}>Add Row</button>
                         </span>
 
                         { inputFields5.map(inputField5 => (
@@ -2008,6 +2021,10 @@ function Profile  ()  {
  
                           </div>
                           )) }
+
+                    <span class="d-flex flex-row-reverse mx-6"  >
+                        <button type="button" class="btn btn-success" >Save</button>
+                    </span>
 
                     <Row className="align-items-center">
                       <Col xs="8">
@@ -2217,6 +2234,9 @@ function Profile  ()  {
                         </FormGroup>
                        </Col>
                     </Row>
+                    <span class="d-flex flex-row-reverse mx-6"  >
+                        <button type="button" class="btn btn-success" >Save</button>
+                    </span>
                     {/* -------------------------------------------- */}
                     <Row className="align-items-center">
                       <Col xs="8">
@@ -2226,7 +2246,7 @@ function Profile  ()  {
                      {/* -------------------------------------------- */}
 
                      <span class="d-flex flex-row-reverse mx-6"  >
-                        <button type="button" class="btn btn-success" onClick={handleAddFields6}>Add Row</button>
+                        <button type="button" class="btn btn-primary" onClick={handleAddFields6}>Add Row</button>
                         </span>
 
                         { inputFields6.map(inputField6 => (
@@ -2292,6 +2312,9 @@ function Profile  ()  {
  
                           </div>
                           )) }
+                           <span class="d-flex flex-row-reverse mx-6"  >
+                            <button type="button" class="btn btn-success" >Save</button>
+                          </span>
 
 
                     {/* -------------------------------------------- */}
@@ -2302,7 +2325,7 @@ function Profile  ()  {
                      </Row>
                      {/* -------------------------------------------- */}
                      <span class="d-flex flex-row-reverse mx-6"  >
-                        <button type="button" class="btn btn-success" onClick={handleAddFields7}>Add Row</button>
+                        <button type="button" class="btn btn-primary" onClick={handleAddFields7}>Add Row</button>
                         </span>
 
                         { inputFields7.map(inputField7 => (
@@ -2376,9 +2399,7 @@ function Profile  ()  {
                        </Col>
                     </Row>
 
-                        <span class="d-flex flex-row-reverse mx-6"  >
-                        <button type="button" class="btn btn-success" onClick={handleAddFields8}>Add Row</button>
-                        </span>
+                     
                         
 
                         { inputFields8.map(inputField8 => (
@@ -2544,6 +2565,9 @@ function Profile  ()  {
                         </FormGroup>
                        </Col>
                     </Row>
+                    <span class="d-flex flex-row-reverse mx-6"  >
+                        <button type="button" class="btn btn-success" >Save</button>
+                    </span>
 {/* ---------------------------------------------------- */}
                     <Row className="align-items-center">
                       <Col xs="8">

@@ -11,16 +11,13 @@ import AuthLayout from "layouts/Auth.js";
 
 function App() {
     return (
-        <div>
-    <BrowserRouter basename="/">
-    <Switch>
-      <Route path="/admin" render={(props) => <AdminLayout {...props} />} />
-      <Route path="/auth" render={(props) => <AuthLayout {...props} />} />
-      <Redirect from="/" to="/auth/login" />
-    </Switch>
-  </BrowserRouter>,
-            
-        </div>
+          <BrowserRouter basename="/">
+            <Switch>
+              <Route path="/admin" render={(props) => <AdminLayout {...props} />} />
+              <Route path="/auth" render={(props) => <AuthLayout {...props} />} />
+              <Redirect from="/" to="/auth/login" />
+            </Switch>
+          </BrowserRouter>
     )
 }
 
