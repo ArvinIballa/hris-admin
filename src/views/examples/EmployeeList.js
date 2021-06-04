@@ -80,7 +80,7 @@ const Tables = () => {
                             alt="..."
                             src={
                               require("../../assets/img/theme/bootstrap.jpg")
- 
+                              .default
                             }
                           />
                         </a>
