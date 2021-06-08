@@ -3039,14 +3039,11 @@ function Profile  ()  {
                         </FormGroup>
                        
                       </Col>
-                      <FormGroup row>
-                      <Col sm="8">
-                      <span style={{marginLeft:'390px'}}>
+                   
+                    </Row>
+                    <span class="d-flex flex-row-reverse mx-6">
                             <button type="button" class="btn btn-success" onClick={btnMarried} disabled={btnDisabled} >Save</button>
                       </span>
-                      </Col>
-                      </FormGroup>
-                    </Row>
 
                     <Row className="align-items-center">
                       <Col xs="8">
@@ -4174,9 +4171,9 @@ function Profile  ()  {
                            separation from the service of the Company.
 
                           </label>
-                          <Col sm="6">
+                          <Col sm="5">
                           
-                            <div class="d-flex flex-row-reverse mx-6">
+                            <div class="d-flex flex-row-reverse mx--4">
                               
                          
                             {/* <input type="file" style={{display:'none'}} id="file" name="file"/>
