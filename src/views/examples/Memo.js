@@ -23,7 +23,11 @@ function Memo({ memos, completeMemo, removeMemo }) {
                             <Col xl="12" style={{width: "350px"}}>
                                         <Card style={{padding:25}}>
                                         <CardTitle  key={memo.id} onClick={() => completeMemo(memo.id)} tag="h2">{memo.text2}</CardTitle>
-                                        <CardSubtitle tag="h6" className="mb-2 text-muted">From: Janet Doe  <label class="d-flex flex-row-reverse"> {new Date().getMonth()}/{new Date().getDate()}/{new Date().getFullYear()} </label></CardSubtitle>
+                                          <div class="d-flex mt--3" >
+                                            <label class="p-2" style={{fontSize:10, color:'gray'}} >From Janet Doe</label>
+                                            <label class="ml-auto p-2" style={{fontSize:10, color:'gray'}}> {new Date().getMonth()+ 1}/{new Date().getDate()}/{new Date().getFullYear()}</label>
+
+                                          </div>
                                         <CardImg top width="100%" src={hbd} alt="Card image cap"  />
                                   
                                         <CardBody>

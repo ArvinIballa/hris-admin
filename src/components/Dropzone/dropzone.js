@@ -39,8 +39,8 @@ const DropZone = () => {
     }
 
     const validateFile = (file) => {
-        const validTypes = ['application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'application/pdf'];
-        if (validTypes.indexOf(file.type) === -1) {
+        const validTypes = ['*'];
+        if (validTypes.indexOf(file.type) === 1) {
             return false;
         }
         return true;

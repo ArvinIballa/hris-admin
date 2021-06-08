@@ -87,14 +87,14 @@ const Tables = () => {
                           <i className="fas fa-ellipsis-v" />
                         </DropdownToggle>
                         <DropdownMenu className="dropdown-menu-arrow" right>
-                          <DropdownItem style={{color: "white", backgroundColor: "transparent"}}  >
-                              <Link to="/admin/ManageRecords"  >Manage Records</Link>
+                          <DropdownItem style={{backgroundColor: "transparent"}}>
+                              <Link to="/admin/ManageRecords" style={{color: "black"}}  >Manage Records</Link>
                           </DropdownItem>
-                          <DropdownItem style={{color: "white", backgroundColor: "transparent"}} >
-                              <Link to="/admin/ManageFiles" >Manage Files</Link> 
+                          <DropdownItem style={{backgroundColor: "transparent"}}>
+                              <Link to="/admin/ManageFiles" style={{color: "black"}}  >Manage Files</Link> 
                           </DropdownItem>
-                          <DropdownItem style={{color: "white", backgroundColor: "transparent"}} >
-                              <Link to="/admin/AttendanceLogs">View Attendance Logs</Link>
+                          <DropdownItem style={{backgroundColor: "transparent"}}>
+                              <Link to="/admin/AttendanceLogs" style={{color: "black"}}  >View Attendance Logs</Link>
                           </DropdownItem>
                         </DropdownMenu>
                       </UncontrolledDropdown>
@@ -118,14 +118,14 @@ const Tables = () => {
                           <i className="fas fa-ellipsis-v" />
                         </DropdownToggle>
                         <DropdownMenu className="dropdown-menu-arrow" right>
-                          <DropdownItem style={{color: "white", backgroundColor: "transparent"}} >
-                              <Link to="/admin/ManageRecords" >Manage Records</Link>
+                          <DropdownItem style={{backgroundColor: "transparent"}}>
+                              <Link to="/admin/ManageRecords" style={{color: "black"}}>Manage Records</Link>
                           </DropdownItem>
-                          <DropdownItem style={{color: "white", backgroundColor: "transparent"}} >
-                              <Link to="/admin/ManageFiles" >Manage Files</Link> 
+                          <DropdownItem style={{backgroundColor: "transparent"}}>
+                              <Link to="/admin/ManageFiles" style={{color: "black"}}>Manage Files</Link> 
                           </DropdownItem>
-                          <DropdownItem style={{color: "white", backgroundColor: "transparent"}} >
-                              <Link to="/admin/AttendanceLogs" >View Attendance Logs</Link>
+                          <DropdownItem style={{backgroundColor: "transparent"}}>
+                              <Link to="/admin/AttendanceLogs" style={{color: "black"}}>View Attendance Logs</Link>
                           </DropdownItem>
                         </DropdownMenu>
                       </UncontrolledDropdown>
@@ -149,14 +149,14 @@ const Tables = () => {
                           <i className="fas fa-ellipsis-v" />
                         </DropdownToggle>
                         <DropdownMenu className="dropdown-menu-arrow" right>
-                          <DropdownItem style={{color: "white", backgroundColor: "transparent"}} >
-                              <Link to="/admin/ManageRecords" >Manage Records</Link>
+                          <DropdownItem style={{backgroundColor: "transparent"}}>
+                              <Link to="/admin/ManageRecords" style={{color: "black"}}   >Manage Records</Link>
                           </DropdownItem >
-                          <DropdownItem style={{color: "white", backgroundColor: "transparent"}} >
-                              <Link to="/admin/ManageFiles" >Manage Files</Link> 
+                          <DropdownItem style={{backgroundColor: "transparent"}}>
+                              <Link to="/admin/ManageFiles" style={{color: "black"}}   >Manage Files</Link> 
                           </DropdownItem>
-                          <DropdownItem style={{color: "white", backgroundColor: "transparent"}} >
-                              <Link to="/admin/AttendanceLogs" >View Attendance Logs</Link>
+                          <DropdownItem style={{backgroundColor: "transparent"}}>
+                              <Link to="/admin/AttendanceLogs" style={{color: "black"}}   >View Attendance Logs</Link>
                           </DropdownItem>
                         </DropdownMenu>
                       </UncontrolledDropdown>

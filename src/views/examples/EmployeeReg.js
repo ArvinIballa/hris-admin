@@ -1,21 +1,5 @@
-/*!
-
-=========================================================
-* Argon Dashboard React - v1.2.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/argon-dashboard-react
-* Copyright 2021 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/argon-dashboard-react/blob/master/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 import React, {useState} from "react";
+import api from '../../api/api'
 
 // reactstrap components
 import 'bootstrap';
@@ -36,6 +20,9 @@ import {
 import { v4 as uuidv4 } from 'uuid';
 // core components
 import UserHeader from "components/Headers/UserHeader.js";
+import AdminFooter from "components/Footers/AdminFooter.js";
+import { setTextRange } from "typescript";
+import { event } from "jquery";
 
 function Profile  ()  {
 
@@ -186,8 +173,527 @@ function Profile  ()  {
     })
     setInputFields8(newInputFields8);
   }
+  //disabled button
+  const [btnDisabled, setbtnDisabled] = useState(true)
+
+  //personal_info
+  const [position, setPosition] = useState('')
+  const [employee_number, setEmployee_number] = useState('')
+  const [sa_no, setSa_no] = useState('')
+  const [email, setEmail] = useState('')
+  const [job_id, setJob_id] = useState(null)
+  const [supervisor, setSupervisor] = useState(null)
+  const [department_id, setDepartment_id] = useState(null)
+  const [date_employed, setDate_employed] = useState(null)
+  const [salary, setSalary] = useState(null)
+  const [leave_count, setLeave_count] = useState(null)
+  const [name, setName] = useState('')
+  const [nickname, setNickname] = useState('')
+  const [other_name, setOther_name] = useState('')
+  const [employee_image, setEmployee_image] = useState('')
+  const [civil_status, setCivil_status] = useState('')
+  const [citizenship, setCitizenship] = useState('')
+  const [gender, setGender] = useState('')
+  const [weight, setWeight] = useState('')
+  const [height, setHeight] = useState('')
+  const [date_of_birth, setDate_of_birth] = useState(null)
+  const [place_of_birth, setPlace_of_birth] = useState()
+  const [city_address, setCity_address] = useState('')
+  const [prov_address, setProv_address] = useState('')
+  const [tel_no, setTel_no] = useState('')
+  const [cel_no, setCel_no] = useState('')
+  const [religion, setReligion] = useState('')
+  const [acr_no, setAcr_no] = useState('')
+  const [acr_date, setAcr_date] = useState(null)
+  const [dept_labor_no, setDept_labor_no] = useState('')
+  const [dept_labor_date, setDept_labor_date] = useState(null)
+  const [tin_no, setTin] = useState('')
+  const [pagibig_no, setPag_ibig] = useState('')
+  const [sss_no, setSss] = useState('')
+  const [philhealth_no, setPhil_health] = useState('')
+
+   //education
+   const [employee_id, setEmployee_id] = useState(null) //6
+   const [primary_school, setPrimary_school] = useState('')
+   const [primary_address, setPrimary_address] = useState('')
+   const [primary_grad, setPrimary_grad] = useState('')
+   const [sec_school, setSec_school] = useState('')
+   const [sec_address, setSec_address] = useState('')
+   const [sec_grad, setSec_grad] = useState('')
+   const [col_school, setCol_school] = useState('')
+   const [col_address, setCol_address] = useState('')
+   const [col_grad, setCol_grad] = useState('')
+   const [col_degree, setCol_degree] = useState('')
+   const [grad_school, setGrad_school] = useState('')
+   const [grad_address, setGrad_address] = useState('')
+   const [grad_degree, setGrad_degree] = useState('')
+   const [grad_grad, setGrad_grad] = useState('')
+   const [others, setOthers] = useState('')
+
+  //exams-taken
+  const [exam_name, setExam_name] = useState('')
+  const [date_taken, setDate_taken] = useState(null)
+  const [result, setResult] = useState('')
+
+  //skills
+  const [skill_name, setSkill_name] = useState('')
+
+  //seminars-taken
+  const [seminar_name, setSeminar_name] = useState('')
+  const [seminar_date, setSeminar_date] = useState(null)
+
+  //job-history
+  const [employer_name, setEmployer_name] = useState('')
+  const [company_address, setCompany_address] = useState('')
+  const [company_contact_no, setCompany_contact_no] = useState('')
+  const [company_supervisor, setCompany_supervisor] = useState('')
+  const [job_title, setJob_title] = useState('')
+  const [starting_income, setStarting_income] = useState(null)
+  const [last_income, setLast_income] = useState(null)
+  const [reason_leave, setReason_leave] = useState()
+  const [has_been_terminated, setHas_been_terminated] = useState(false)
+  const [has_terminated_reason, setHas_terminated_reason] = useState('')
+
+  //family
+  const [father_name, setFather_name] = useState('')
+  const [father_birth, setFather_birth] = useState(null)
+  const [father_age, setFather_age] = useState(null)
+  const [father_occu, setFather_occu] = useState('')
+  const [father_employer, setFather_employer] = useState('')
+  const [mother_name, setMother_name] = useState('')
+  const [mother_birth, setMother_Birth] = useState(null)
+  const [mother_age, setMother_age] = useState(null)
+  const [mother_occu, setMother_occu] = useState('')
+  const [mother_employer, setMother_employer] = useState('')
+  const [family_address, setFamily_address] = useState('')
+  const [family_contact_no, setFamily_contact_no] = useState('')
+
+  //siblings
+  const [sibling_name, setSibling_name] = useState('')
+  const [sibling_age, setSibling_age] = useState(null)
+  const [sibling_occupation, setSibling_occupation] = useState('')
+  const [sibling_employer, setSibling_employer] = useState('')
+
+  //married
+  const [spouse_name, setSpouse_name] = useState('')
+  const [spouse_address, setSpouse_address] = useState('')
+  const [spouse_birth, setSpouse_birth] = useState(null)
+  const [spouse_age, setSpouse_age] = useState(null)
+  const [spouse_occupation, setSpouse_occupation] = useState('')
+  const [spouse_employer, setSpouse_employer] = useState('')
+
+  //children
+  const [child_name, setChild_name] = useState('')
+  const [child_age, setChild_age] = useState(null)
+
+  //medical history
+  const [had_illness, setHad_illness] = useState(false)
+  const [illness_details, setIllness_details] = useState('')
+  const [hospitalized, setHospitalized] = useState(false)
+  const [hospitalized_details, setHospitalized_details] = useState('')
+  const [last_checkup_purpose, setLast_checkup_purpose] = useState('')
+  const [last_checkup_place, setLast_checkup_place] = useState('')
+  const [last_checkup_date, setLast_checkup_date] = useState(null)
+  const [distinguishing_marks, setDistinguishing_marks] = useState('')
+
+  //reference
+  const [ref_name, setRef_name] = useState('')
+  const [ref_occupation, setRef_occupation] = useState('')
+  const [ref_employer, setRef_employer] = useState('')
+
+  //Organization
+  const [org_name, setOrg_name] = useState('')
+  const [org_desc, setOrg_desc] = useState('')
+
+  //Offense
+  const [convicted, setConvicted] = useState(false)
+  const [offense_details, setOffense_details] = useState('')
+  const [offense_court, setOffense_court] = useState('')
+  const [date_filed, setDate_filed] = useState(null)
+  const [termination_record, setTermination_record] = useState(false)
+  const [revocation_record, setRevocation_record] = useState(false)
+  const [injunction_record, setInjunction_record] = useState(false)
+  const [arrest_record, setArrest_record] = useState(false)
+
+  //Emergency
+  const [person_name, setPerson_name] = useState('')
+  const [person_relationship, setPerson_relationship] = useState('')
+  const [person_address, setPerson_address] = useState('')
+  const [person_phone, setPerson_phone] = useState('')
+  
+  //signature 
+  const [employee_signature, setEmployee_signature] = useState('')
+
+  //button for signature section
+  const btnSignature = (e) => {
+    const signature = {
+      employee_id,
+      employee_signature,
+    }
+    e.preventDefault();
+    console.log(signature)
+    api.post('employees/signature/', signature)
+    .then(res =>{
+      console.log(res)
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  }
+
+  //button for In Case of Emergency section
+  const btnEmergency = (e) => {
+    const emergency = {
+      employee_id,
+      person_name,
+      person_relationship,
+      person_address,
+      person_phone,
+    }
+    e.preventDefault();
+    console.log(emergency)
+    api.post('employees/emergency/', emergency)
+    .then(res =>{
+      console.log(res)
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  }
+
+  //button for Offense Section
+  const btnOffense = (e) => {
+    const offense = {
+      employee_id,
+      convicted,
+      offense_details,
+      offense_court,
+      date_filed,
+      termination_record,
+      revocation_record,
+      injunction_record,
+      arrest_record,
+    }
+    e.preventDefault();
+    console.log(offense)
+    api.post('employees/offense/', offense)
+    .then(res =>{
+      console.log(res)
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  }
+
+  //button for Organization section
+  const btnOrg = (e) => {
+    const org = {
+      employee_id,
+      org_name,
+      org_desc,
+    }
+    e.preventDefault();
+    console.log(org)
+    api.post('employees/org/', org)
+    .then(res =>{
+      console.log(res)
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  }
+
+  //button for reference section 
+  const btnReference = (e) => {
+    const reference = {
+      employee_id,
+      ref_name,
+      ref_occupation,
+      ref_employer,
+    }
+    e.preventDefault();
+    console.log(reference)
+    api.post('employees/reference/', reference)
+    .then(res =>{
+      console.log(res)
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  }
+
+
+  //button for Medical History
+  const btnMedical = (e) => {
+    const medical = {
+      employee_id,
+      had_illness,
+      illness_details,
+      hospitalized,
+      hospitalized_details,
+      last_checkup_date,
+      last_checkup_purpose,
+      last_checkup_place,
+      distinguishing_marks,
+    }
+    e.preventDefault();
+    console.log(medical)
+    api.post('employees/med-history/', medical)
+    .then(res =>{
+      console.log(res)
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  }
+
+
+  //button for children section
+  const btnChildren = (e) => {
+    const children = {
+      employee_id,
+      child_name,
+      child_age,
+    }
+    e.preventDefault();
+    console.log(children)
+    api.post('employees/children/', children)
+    .then(res =>{
+      console.log(res)
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  }
+
+  //button for if married section
+  const btnMarried = (e) => {
+    const married = {
+      employee_id,
+      spouse_name,
+      spouse_address,
+      spouse_birth,
+      spouse_age,
+      spouse_occupation,
+      spouse_employer,
+    }
+    e.preventDefault();
+    console.log(married)
+    api.post('employees/married/', married)
+    .then(res =>{
+      console.log(res)
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  }
+
+  //button for Brothers & Sisters section
+  const btnSiblings = (e) => {
+    const siblings = {
+      employee_id,
+      sibling_name,
+      sibling_age,
+      sibling_occupation,
+      sibling_employer,
+    }
+    e.preventDefault();
+    console.log(siblings)
+    api.post('employees/siblings/', siblings)
+    .then(res =>{
+      console.log(res)
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  }
+
+  //button for family background section
+  const btnFamily = (e) => {
+    const family = {
+      employee_id,
+      father_name,
+      father_birth,
+      father_age,
+      father_occu,
+      father_employer,
+      mother_name,
+      mother_birth,
+      mother_age,
+      mother_occu,
+      mother_employer,
+      family_address,
+      family_contact_no,
+    }
+    e.preventDefault();
+    console.log(family)
+    api.post('employees/family/', family)
+    .then(res =>{
+      console.log(res)
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  }
+  
+
+  //button for Employment History section
+
+  const btnJobHistory = (e) => {
+    const job_history = {
+      employee_id,
+      employer_name,
+      company_address,
+      company_contact_no,
+      company_supervisor,
+      job_title,
+      starting_income,
+      last_income,
+      reason_leave,
+      has_been_terminated,
+      has_terminated_reason,
+    }
+    e.preventDefault();
+    console.log(job_history)
+    api.post('employees/job-history/', job_history)
+    .then(res =>{
+      console.log(res)
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  }
+
+
+  //button for seminars / trainings attended section
+  const btnSeminar = (e) => {
+    const seminar = {
+      employee_id,
+      seminar_name,
+      seminar_date,
+    }
+    e.preventDefault();
+    console.log(seminar)
+    api.post('employees/seminars-taken/', seminar)
+    .then(res =>{
+      console.log(res)
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  }
+
+
+  //button for other skill / machines operated section
+  const btnSkills = (e) => {
+    const skills = {
+      employee_id,
+      skill_name,
+    }
+    e.preventDefault();
+    console.log(skills)
+    api.post('employees/skills/', skills)
+    .then(res =>{
+      console.log(res)
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  }
+
+
+  //button for exams-taken section
+  const btnExamsTaken = (e) => {
+    const exams_taken_info = {
+      employee_id,
+      exam_name,
+      date_taken,
+      result,
+    }
+    e.preventDefault();
+    console.log(exams_taken_info)
+    api.post('employees/exams-taken/', exams_taken_info)
+    .then(res =>{
+      console.log(res)
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  }
+
+
+  //button for educational background section
+   const btnEducation = (e) =>{
+    const educ_info = {
+      employee_id,
+      primary_school,
+      primary_address,
+      primary_grad,
+      sec_school,
+      sec_address,
+      sec_grad,
+      col_school,
+      col_address,
+      col_grad,
+      col_degree,
+      grad_address,
+      grad_school,
+      grad_degree,
+      grad_grad,
+      others, 
+    }
+    e.preventDefault();
+    console.log(educ_info)
+    api.post('employees/education/', educ_info)
+    .then(res =>{
+      console.log(res)
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  }
+
+
+  //button for personal infromation section
+  const btnPersonalInfo = (e) => {
+    const personal_info = {
+      position,
+      sa_no,
+      date_employed,
+      employee_number,
+      name,
+      other_name,
+      nickname,
+      date_of_birth,
+      weight,
+      height,
+      tel_no,
+      religion,
+      cel_no,
+      city_address,
+      prov_address,
+      civil_status,
+      gender,
+      tin_no,
+      pagibig_no,
+      sss_no,
+      philhealth_no
+    }
+    e.preventDefault();
+    setbtnDisabled(false)
+    console.log(personal_info)
+    api.post('employees/register', personal_info)
+    .then(res =>{
+      console.log(res)
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  
+  }
 
   
+
 
 // ---------------------------------
   return (
@@ -209,8 +715,8 @@ function Profile  ()  {
               <CardBody>
                 <Form>
                 
-                  <div className="pl-lg-0">
-                    <Row>
+                  <div className="pl-lg-0" >
+                    <Row style={{display: "inline-flex", width: "100%"}}>
                       <Col sm="6" >
                         <FormGroup row>
                           <label
@@ -224,6 +730,7 @@ function Profile  ()  {
                             class="form-control"
                             id="input-username"
                             type="text"
+                            onChange = {e => setPosition(e.target.value)}
                           />
                           </Col>
                         </FormGroup>
@@ -232,31 +739,32 @@ function Profile  ()  {
                       <Col sm="6">
                         <FormGroup row>
                           <label
-                            class="col-sm-3 col-form-label"
+                            class="col-sm-3 "
                             htmlFor="input-sa"
                           >
-                           S.A NO.:
+                           <span style={{display: "inline-flex"}}>S.A<br/>Number:</span>
                           </label>
                           <Col sm="8">
                           <Input
                             class="form-control"
                             id="input-sa"
                             type="text"
+                            onChange = {e => setSa_no(e.target.value)}
                           />
                           </Col>
                         </FormGroup>
                       </Col>
                     </Row>
-                     <Row>
+                     <Row style={{display: "inline-flex", width: "100%"}}>
                       <Col sm="6">
                         <FormGroup row>
                           <label
-                            class="col-sm-3 col-form-label"
+                            class="col-sm-3 "
                             htmlFor="input-dateemp"
                           >
                               Date Employed:
                           </label>
-                          <Col sm="4">
+                          <Col sm="5">
                     
                             <Input
                             
@@ -264,6 +772,7 @@ function Profile  ()  {
                               name="date"
                               id="input-dateemp"
                               placeholder="date placeholder"
+                              onChange = {e => setDate_employed(e.target.value)}
                             />
                         
                           </Col>
@@ -272,26 +781,27 @@ function Profile  ()  {
                       <Col sm="6">
                         <FormGroup row>
                           <label
-                            class="col-sm-3 col-form-label"
+                            class="col-sm-3 "
                             htmlFor="input-empNo"
                           >
-                              Employee No.:
+                              Employee Number:
                           </label>
                           <Col sm="8">
                           <Input
                             class="form-control"
                             id="input-empNo"
                             type="text"
+                            onChange = {e => setEmployee_number(e.target.value)}
                           />
                           </Col>
                         </FormGroup>
                       </Col>
                     </Row>
-                    <Row>
+                    <Row style={{display: "inline-flex", width: "100%"}}>
                       <Col sm="6">
                         <FormGroup row>
                           <label
-                            class="col-sm-3 col-form-label"
+                            class="col-sm-3 "
                             htmlFor="input-name"
                           >
                             Name (LN,FN,MN):
@@ -301,6 +811,7 @@ function Profile  ()  {
                             class="form-control"
                             id="input-name"
                             type="text"
+                            onChange = {e => setName(e.target.value)}
                           />
                           </Col>
                         </FormGroup>
@@ -308,23 +819,25 @@ function Profile  ()  {
                       <Col sm="6">
                         <FormGroup row>
                           <label
-                            class="col-sm-3 col-form-label"
+                            class="col-sm-3 "
                             htmlFor="input-othName"
                           >
-                            Other Names/Aliases:
+                            <span style={{display: "inline-flex"}}>Other<br/>Names:</span>
                           </label>
                           <Col sm="8">
                           <Input
                             class="form-control"
                             id="input-othName"
+                            placeholder="Aliases"
                             type="text"
+                            onChange = {e => setOther_name(e.target.value)}
                           />
                           </Col>
                         </FormGroup>
                       </Col>
                     </Row>
 
-                    <Row>
+                    <Row style={{display: "inline-flex", width: "100%"}}>
                       <Col sm="6">
                         <FormGroup row>
                           <label
@@ -338,6 +851,7 @@ function Profile  ()  {
                             class="form-control"
                             id="input-nickName"
                             type="text"
+                            onChange = {e => setNickname(e.target.value)}
                           />
                           </Col>
                         </FormGroup>
@@ -345,16 +859,17 @@ function Profile  ()  {
                       <Col sm="6">
                         <FormGroup row>
                           <label
-                            class="col-sm-3 col-form-label"
+                            class="col-sm-3"
                             htmlFor="input-DoB"
                           >
-                            Date of Birth:
+                           <span style={{display: "inline-flex"}}>Date of<br/>Birth:</span>
                           </label>
-                          <Col sm="4">
+                          <Col sm="5">
                           <Input
                             class="form-control"
                             id="input-DoB"
                             type="date"
+                            onChange = {e => setDate_of_birth(e.target.value)}
                           />
                           </Col>
                         </FormGroup>
@@ -362,11 +877,11 @@ function Profile  ()  {
                     </Row>
 
                     
-                    <Row>
+                    <Row style={{display: "inline-flex", width: "100%"}}>
                       <Col sm="6">
                         <FormGroup row>
                           <label
-                            class="col-sm-3 col-form-label"
+                            class="col-sm-3 col-form-label "
                             htmlFor="input-Weight"
                           >
                             Weight:
@@ -376,20 +891,22 @@ function Profile  ()  {
                             class="form-control"
                             id="input-Weight"
                             type="text"
+                            onChange = {e => setWeight(e.target.value)}
                           />
                           </Col >
                           
                           <label
-                            class="col-sm-2 col-form-label "
+                            class="col-sm-2 col-form-label  "
                             htmlFor="input-Height"
                           >
-                            Height:
+                            <span style={{display: "inline-flex"}}>Height:</span>
                           </label>
                           <Col sm="3">
                           <Input
                             class="form-control"
                             id="input-first-Height"
                             type="text"
+                            onChange = {e => setHeight(e.target.value)}
                           />
                           </Col>
                         </FormGroup>
@@ -399,27 +916,28 @@ function Profile  ()  {
                       <Col sm="6">
                         <FormGroup row>
                           <label
-                            class="col-sm-3 col-form-label"
+                            class="col-sm-3  "
                             htmlFor="input-landNo"
                           >
-                            Landline No.:
+                            Landline Number:
                           </label>
                           <Col sm="8">
                           <Input
                             class="form-control"
                             id="input-last-landNo"
                             type="text"
+                            onChange = {e => setTel_no(e.target.value)}
                           />
                           </Col>
                         </FormGroup>
                       </Col>
                     </Row>
 
-                    <Row>
+                    <Row style={{display: "inline-flex", width: "100%"}}>
                       <Col sm="6">
                         <FormGroup row>
                           <label
-                            class="col-sm-3 col-form-label"
+                            class="col-sm-3 col-form-label "
                             htmlFor="input-Religion"
                           >
                             Religion:
@@ -429,6 +947,7 @@ function Profile  ()  {
                             class="form-control"
                             id="input-Religion"
                             type="text"
+                            onChange = {e => setReligion(e.target.value)}
                           />
                           </Col>
                         </FormGroup>
@@ -436,83 +955,81 @@ function Profile  ()  {
                       <Col sm="6">
                         <FormGroup row>
                           <label
-                            class="col-sm-3 col-form-label"
+                            class="col-sm-3  "
                             htmlFor="input-cpNo"
                           >
-                            Cellphone No.:
+                            Cellphone Number:
                           </label>
                           <Col sm="8">
                           <Input
                             class="form-control"
                             id="input-cpNo"
                             type="text"
-                          />
-                          </Col>
-                        </FormGroup>
-                      </Col>
-                    </Row>
-                    {/* Need Ayusin */}
-                    <Row>
-                      <Col md="1" style={{marginRight:65}}>
-                        <FormGroup row>
-                          <label
-                            class="col-sm-auto col-form-label "
-                            htmlFor="input-cityAdd"
-                          >
-                            City Address:
-                          </label>
-                     
-                        </FormGroup>
-                      </Col>
-                      <Col xs="10">
-                      <FormGroup row>
-                          <Col >
-                          <Input
-                            class="form-control "
-                            id="input-cityAdd"
-                            type="text"
-                          />
-                          </Col>
-                        </FormGroup>
-                      </Col>
-                    </Row>
-                    <Row>
-                      <Col md="2" >
-                        <FormGroup row>
-                          <label
-                            class="col-sm-auto col-form-label "
-                            htmlFor="input-provAdd"
-                          >
-                            Province Address:
-                          </label>
-                     
-                        </FormGroup>
-                      </Col>
-                      <Col xs="10" style={{marginLeft:-65}}>
-                      <FormGroup row>
-                          <Col >
-                          <Input
-                            class="form-control "
-                            id="input-provAdd"
-                            type="text"
+                            onChange = {e => setCel_no(e.target.value)}
                           />
                           </Col>
                         </FormGroup>
                       </Col>
                     </Row>
 
-                    <Row>
+                    <Row style={{display: "inline-flex", width: "100%"}}>
                       <Col sm="6">
                         <FormGroup row>
                           <label
-                            class="col-sm-3 col-form-label"
+                            class="col-sm-3 "
+                            htmlFor="input-cityAdd"
+                          >
+                            <span style={{display: "inline-flex"}}>City<br/>Address:</span>
+                          </label>
+                          <Col sm="8">
+                          <Input
+                            class="form-control"
+                            id="input-Religion"
+                            type="text"
+                            onChange = {e => setCity_address(e.target.value)}
+                          />
+                          </Col>
+                        </FormGroup>
+                      </Col>
+                      <Col sm="6">
+                        <FormGroup row>
+                          <label
+                            class="col-sm-3 "
+                            htmlFor="input-provAdd"
+                          >
+                            Provincial Address:
+                          </label>
+                          <Col sm="8">
+                          <Input
+                            class="form-control"
+                            id="input-cpNo"
+                            type="text"
+                            onChange = {e => setProv_address(e.target.value)}
+                          />
+                          </Col>
+                        </FormGroup>
+                      </Col>
+                    </Row>
+                    {/* Need Ayusin */}
+              
+
+                    <Row style={{display: "inline-flex", width: "100%"}}>
+                      <Col sm="6">
+                        <FormGroup row>
+                          <label
+                            class="col-sm-3 col-form-label "
                             htmlFor="input-civStatus"
                           >
                             Civil Status:
                           </label>
                           <Col sm='3'>
                           <FormGroup>
-                            <Input type="select" name="select" id="input-civStatus">
+                            <Input 
+                              type="select" 
+                              name="select"
+                              id="input-civStatus"
+                              onChange = {e => setCivil_status(e.target.value)}
+                             >
                             <option selected>Select</option>
                               <option>Single</option>
                               <option>Married</option>
@@ -525,14 +1042,19 @@ function Profile  ()  {
                       <Col sm="6">
                         <FormGroup row>
                           <label
-                            class="col-sm-3 col-form-label"
+                            class="col-sm-3 col-form-label "
                             htmlFor="gender"
                           >
                             Gender:
                           </label>
                           <Col sm='3 '>
                           <FormGroup>
-                            <Input type="select" name="select" id="gender">
+                            <Input 
+                              type="select"
+                              name="select" 
+                              id="gender"
+                              onChange = {e => setGender(e.target.value)}
+                              >
                             <option selected>Select</option>
                               <option>Male</option>
                               <option>Female</option>
@@ -544,11 +1066,11 @@ function Profile  ()  {
                       </Col>
                     </Row>
 
-                    <Row>
+                    <Row style={{display: "inline-flex", width: "100%"}}>
                       <Col sm="6">
                         <FormGroup row>
                           <label
-                            class="col-sm-3 col-form-label"
+                            class="col-sm-3 col-form-label "
                             htmlFor="input-tin"
                           >
                             TIN:
@@ -558,6 +1080,7 @@ function Profile  ()  {
                             class="form-control"
                             id="input-tin"
                             type="text"
+                            onChange = {e => setTin(e.target.value)}
                           />
                           </Col>
                         </FormGroup>
@@ -565,7 +1088,7 @@ function Profile  ()  {
                       <Col sm="6">
                         <FormGroup row>
                           <label
-                            class="col-sm-3 col-form-label"
+                            class="col-sm-3 "
                             htmlFor="input-pagibig"
                           >
                             Pag-ibig Fund No.:
@@ -575,26 +1098,28 @@ function Profile  ()  {
                             class="form-control"
                             id="input-pagibig"
                             type="text"
+                            onChange = {e => setPag_ibig(e.target.value)}
                           />
                           </Col>
                         </FormGroup>
                       </Col>
                     </Row>
 
-                    <Row>
+                    <Row style={{display: "inline-flex", width: "100%"}}>
                       <Col sm="6">
                         <FormGroup row>
                           <label
-                            class="col-sm-3 col-form-label"
+                            class="col-sm-3  "
                             htmlFor="input-sss"
                           >
-                            SSS No:
+                           <span style={{display: "inline-flex"}}>SSS<br/>Number:</span>
                           </label>
                           <Col sm="8">
                           <Input
                             class="form-control"
                             id="input-sss"
                             type="text"
+                            onChange = {e => setSss(e.target.value)}
                           />
                           </Col>
                         </FormGroup>
@@ -602,43 +1127,45 @@ function Profile  ()  {
                       <Col sm="6">
                         <FormGroup row>
                           <label
-                            class="col-sm-3 col-form-label"
+                            class="col-sm-3  "
                             htmlFor="input-philHealth"
                           >
-                            PhilHealth No.:
+                            PhilHealth Number:
                           </label>
                           <Col sm="8">
                           <Input
                             class="form-control"
                             id="input-philHealth"
                             type="text"
+                            onChange = {e => setPhil_health(e.target.value)}
                           />
                           </Col>
                         </FormGroup>
                       </Col>
                     </Row>
-                    <span class="d-flex flex-row-reverse mx-6"  >
-                        <button type="button" class="btn btn-success" >Save</button>
+                    <span class="d-flex flex-row-reverse mx-7" >
+                        <button type="button" class="btn btn-success" onClick={btnPersonalInfo} >Save</button>
                     </span>
                   </div>
 
+                  
 
                 {/* EDUCATIONAL BG */}
                
-                    <Row className="align-items-center">
+                    <Row >
                       <Col xs="8">
-                        <h1 className="mb-5 mt-5">B.EDUCATIONAL BACKGROUND</h1>
+                        <h1 className="mb-5 mt-5" >B.EDUCATIONAL BACKGROUND</h1>
                       </Col>
-                   </Row>
+                    </Row>
              
                   
                 
                   <div className="pl-lg-0">
-                  <Row>
+                  <Row style={{display: "inline-flex", width: "100%"}}>
                       <Col sm="6">
                         <FormGroup row>
                           <label
-                            class="col-sm-3 col-form-label"
+                            class="col-sm-3 "
                             htmlFor="input-primSchool"
                           >
                            Primary School:
@@ -648,6 +1175,7 @@ function Profile  ()  {
                             class="form-control"
                             id="input-primSchool"
                             type="text"
+                            onChange = {e => setPrimary_school(e.target.value)}
                           />
                           </Col>
                         </FormGroup>
@@ -655,7 +1183,7 @@ function Profile  ()  {
                       <Col sm="6">
                         <FormGroup row>
                           <label
-                            class="col-sm-3 col-form-label"
+                            class="col-sm-3 "
                             htmlFor="input-secondSchool"
                           >
                            Secondary School:
@@ -665,16 +1193,17 @@ function Profile  ()  {
                             class="form-control"
                             id="input-secondSchool"
                             type="text"
+                            onChange = {e => setSec_school(e.target.value)}
                           />
                           </Col>
                         </FormGroup>
                       </Col>
                     </Row>
-                    <Row>
+                    <Row style={{display: "inline-flex", width: "100%"}}>
                       <Col sm="6">
                         <FormGroup row>
                           <label
-                            class="col-sm-3 col-form-label"
+                            class="col-sm-3 col-form-label "
                             htmlFor="input-primAddSchool"
                           >
                            Address:
@@ -684,6 +1213,7 @@ function Profile  ()  {
                             class="form-control"
                             id="input-primAddSchool"
                             type="text"
+                            nChange = {e => setPrimary_address(e.target.value)}
                           />
                           </Col>
                         </FormGroup>
@@ -701,24 +1231,31 @@ function Profile  ()  {
                             class="form-control"
                             id="input-secondAddSchool"
                             type="text"
+                            onChange = {e => setSec_address(e.target.value)}
                           />
                           </Col>
                         </FormGroup>
                       </Col>
                     </Row>
 
-                    <Row>
+                    <Row style={{display: "inline-flex", width: "100%"}}>
                       <Col sm="6">
                         <FormGroup row>
                           <label
-                            class="col-sm-3 col-form-label"
+                            class="col-sm-3 "
                             htmlFor="yearGradPrim"
                           >
                             Year Graduated:
                           </label>
                           <Col sm='3'>
                           <FormGroup>
-                            <Input type="select" name="select" id="yearGradPrim" placeholder="select">
+                            <Input 
+                            type="select" 
+                            name="select" 
+                            id="yearGradPrim"
+                            placeholder="select"
+                            onChange = {e => setPrimary_grad(e.target.value)}
+                            >
                             <option selected disabled>Select</option>
                               <option>1980</option>
                               <option>1981</option>
@@ -770,14 +1307,20 @@ function Profile  ()  {
                       <Col sm="6">
                         <FormGroup row>
                           <label
-                            class="col-sm-3 col-form-label"
+                            class="col-sm-3 "
                             htmlFor="yearGradSecond"
                           >
                             Year Graduated:
                           </label>
                           <Col sm='3'>
                           <FormGroup>
-                            <Input type="select" name="select" id="yearGradSecond" placeholder="select">
+                            <Input 
+                            type="select" 
+                            name="select" 
+                            id="yearGradSecond" 
+                            placeholder="select"
+                            onChange = {e => setSec_grad(e.target.value)}
+                            >
                             <option selected disabled>Select</option>
                               <option>1980</option>
                               <option>1981</option>
@@ -830,25 +1373,26 @@ function Profile  ()  {
           {/* ---------------------------------------------------- */}
                     <Row className="align-items-center">
                       <Col xs="8">
-                        <h1 className="mb-5 mt-5"></h1>
+                        <h1 className="mb-5 mt-4"></h1>
                       </Col>
                    </Row>
          {/* ---------------------------------------------------- */}
 
-                   <Row>
+                   <Row style={{display: "inline-flex", width: "100%"}}>
                       <Col sm="6">
                         <FormGroup row>
                           <label
                             class="col-sm-3 col-form-label"
                             htmlFor="input-college"
                           >
-                          College:
+                          College School:
                           </label>
                           <Col sm="8">
                           <Input
                             class="form-control"
                             id="input-college"
                             type="text"
+                            onChange = {e => setCol_school(e.target.value)}
                           />
                           </Col>
                         </FormGroup>
@@ -856,22 +1400,23 @@ function Profile  ()  {
                       <Col sm="6">
                         <FormGroup row>
                           <label
-                            class="col-sm-3 col-form-label"
+                            class="col-sm-3 "
                             htmlFor="input-gradSch"
                           >
-                           Grad School:
+                           Graduate School:
                           </label>
                           <Col sm="8">
                           <Input
                             class="form-control"
                             id="input-gradSch"
                             type="text"
+                            onChange = {e => setGrad_school(e.target.value)}
                           />
                           </Col>
                         </FormGroup>
                       </Col>
                     </Row>
-                    <Row>
+                    <Row style={{display: "inline-flex", width: "100%"}}>
                       <Col sm="6">
                         <FormGroup row>
                           <label
@@ -885,6 +1430,7 @@ function Profile  ()  {
                             class="form-control"
                             id="input-addCollSch"
                             type="text"
+                            onChange = {e => setCol_address(e.target.value)}
                           />
                           </Col>
                         </FormGroup>
@@ -902,13 +1448,14 @@ function Profile  ()  {
                             class="form-control"
                             id="input-addGradSch"
                             type="text"
+                            onChange = {e => setGrad_address(e.target.value)}
                           />
                           </Col>
                         </FormGroup>
                       </Col>
                     </Row>
 
-                    <Row>
+                    <Row style={{display: "inline-flex", width: "100%"}}>
                       <Col sm="6">
                         <FormGroup row>
                           <label
@@ -922,6 +1469,7 @@ function Profile  ()  {
                             class="form-control"
                             id="input-degColl"
                             type="text"
+                            onChange = {e => setCol_degree(e.target.value)}
                           />
                           </Col>
                         </FormGroup>
@@ -939,24 +1487,31 @@ function Profile  ()  {
                             class="form-control"
                             id="input-degGrad"
                             type="text"
+                            onChange = {e => setGrad_degree(e.target.value)}
                           />
                           </Col>
                         </FormGroup>
                       </Col>
                     </Row>
 
-                    <Row>
+                    <Row style={{display: "inline-flex", width: "100%"}}>
                       <Col sm="6">
                         <FormGroup row>
                           <label
-                            class="col-sm-3 col-form-label"
+                            class="col-sm-3 "
                             htmlFor="yearColl"
                           >
                             Year Graduated:
                           </label>
                           <Col sm='3'>
                           <FormGroup>
-                            <Input type="select" name="select" id="yearColl" placeholder="select">
+                            <Input 
+                            type="select" 
+                            name="select" 
+                            id="yearColl" 
+                            placeholder="select"
+                            onChange = {e => setCol_grad(e.target.value)}
+                            >
                             <option selected disabled>Select</option>
                               <option>1980</option>
                               <option>1981</option>
@@ -1008,14 +1563,20 @@ function Profile  ()  {
                       <Col sm="6">
                         <FormGroup row>
                           <label
-                            class="col-sm-3 col-form-label"
+                            class="col-sm-3 "
                             htmlFor="yearGrad"
                           >
                             Year Graduated:
                           </label>
                           <Col sm='3'>
                           <FormGroup>
-                            <Input type="select" name="select" id="yearGrad" placeholder="select">
+                            <Input 
+                            type="select" 
+                            name="select" 
+                            id="yearGrad" 
+                            placeholder="select"
+                            onChange = {e => setGrad_grad(e.target.value)}
+                            >
                             <option selected disabled>Select</option>
                               <option>1980</option>
                               <option>1981</option>
@@ -1065,53 +1626,45 @@ function Profile  ()  {
                         </FormGroup>
                       </Col>
                     </Row>
-                    <Row>
-                      <Col md="1" style={{marginRight:65}}>
+                    <Row style={{display: "inline-flex", width: "100%"}}>
+                      <Col sm="6">
                         <FormGroup row>
                           <label
-                            class="col-sm-auto col-form-label "
-                            htmlFor="input-others"
+                            class="col-sm-3 col-form-label"
+                            htmlFor="input-degGrad"
                           >
-                            Others:
+                           Others:
                           </label>
-                     
-                        </FormGroup>
-                      </Col>
-                      <Col xs="10">
-                      <FormGroup row>
-                          <Col >
+                          <Col sm="8">
                           <Input
-                            class="form-control "
-                            id="input-others"
+                            class="form-control"
+                            id="input-degGrad"
                             type="text"
+                            onChange = {e => setOthers(e.target.value)}
                           />
                           </Col>
                         </FormGroup>
                       </Col>
                     </Row>
+                    <span class="d-flex flex-row-reverse mx-7"  >
+                        <button type="submit" class="btn btn-success" onClick={btnEducation} disabled={btnDisabled}>Save</button>
+                    </span>
 
                     <Row className="align-items-center">
                       <Col xs="8">
                         <h1 className="mb-5 mt-5">EXAMINATIONS TAKEN</h1>
                       </Col>
-                   </Row>
-
-
-
-                    
-                 
-               
-                        <span class="d-flex flex-row-reverse mx-6"  >
-                        <button type="button" class="btn btn-primary" onClick={handleAddFields}>Add Row</button>
-                        </span>
-
+                   </Row>       
+                      <span class="d-flex flex-row-reverse mx-7"  >
+                        <button type="button" class="btn btn-primary" onClick={handleAddFields} disabled={btnDisabled}>Add Row</button>
+                      </span>
                         { inputFields.map(inputField => (
                           <div >  
-
-                            <div class="form-group row">
+                            {/* <div class="form-group row">
                                     <label
-                                      class="col-sm-1 col-form-label" htmlFor="input-examName">Name:</label>
-                                <div class="col-sm-5 mx-6">
+                                      class="col-sm-auto col-form-label" htmlFor="input-examName"
+                                      style={{marginRight:115}}>Name:</label>
+                                <div class="col-sm-6 ">
                                     <Input
                                       
                                       class="form-control"
@@ -1123,13 +1676,88 @@ function Profile  ()  {
                                       onChange={event => handleChangeInput(inputField.id, event)}
                                     />
                                     </div>
-                            </div>
+                            </div> */}
+
+                    <Row style={{display: "inline-flex", width: "100%"}}>
+                      <Col sm="6" >
+                        <FormGroup row>
+                          <label
+                         
+                            class="col-sm-3 col-form-label"
+                            htmlFor="input-examName"
+                          >
+                            Name:
+                          </label>
+                          <Col sm="8">
+                              <Input
+                                  class="form-control"
+                                  id="input-examName"
+                                  name="Name"
+                                  label="Name"
+                                  variant="filled"
+                                  value={inputField.Name}
+                                  onChange={event => handleChangeInput(inputField.id, event), e => setExam_name(e.target.value)}
+                                />
+                            </Col>
+                        </FormGroup>
+                      </Col>
+                    </Row>
+
+                    <Row style={{display: "inline-flex", width: "100%"}}>
+                      <Col  sm="6" >
+                        <FormGroup row>
+                          <label
+                         
+                            class="col-sm-3 col-form-label"
+                            htmlFor="input-examTaken"
+                          >
+                            Date Taken:
+                          </label>
+                            <Col sm="5" >
+                                <Input
+                                  type="date"
+                                  class="form-control"
+                                  id="input-examTaken"
+                                  name="dateTaken"
+                                  label="Name"
+                                  variant="filled"
+                                  value={inputField.dateTaken}
+                                  onChange={event => handleChangeInput(inputField.id, event), e => setDate_taken(e.target.value)}
+                                />
+                             </Col>
+                        </FormGroup>
+                      </Col>
+                    </Row>
                               
-                        
-                        
+                    <Row style={{display: "inline-flex", width: "100%"}}>
+                        <Col  sm="6" >
+                          <FormGroup row>
+                              <label
+                            
+                                class="col-sm-3 col-form-label"
+                                htmlFor="input-scoreExam"
+                              >
+                                Score:
+                              </label>
+                             <Col sm="5">
+                                <Input
+                                    class="form-control"
+                                    id="input-scoreExam"
+                                    name="score"
+                                    variant="filled"
+                                    value={inputField.score}
+                                    onChange={event => handleChangeInput(inputField.id, event), e => setResult(e.target.value)}
+                                />
+                             </Col>
+                          </FormGroup>
+                        </Col>
+                      </Row>
+                      <span class="d-flex flex-row-reverse mx-7"  >
+                        <button type="submit" class="btn btn-success" onClick={btnExamsTaken} disabled={btnDisabled}>Save</button>
+                    </span>
                      
                       
-                            <div class="form-group row">
+                            {/* <div class="form-group row">
                                     <label
                                       class="col-sm-1 col-form-label"
                                       htmlFor="input-examTaken"
@@ -1167,7 +1795,7 @@ function Profile  ()  {
                                       onChange={event => handleChangeInput(inputField.id, event)}
                                     />
                                     </div>
-                           </div>    
+                           </div>     */}
  
                           </div>
                           )) }
@@ -1226,27 +1854,32 @@ function Profile  ()  {
                    </Row>
 
                    
-                   <Row>
-                      <Col sm="12">
+                   <Row style={{display: "inline-flex", width: "100%"}}>
+                      <Col sm="6">
                         <FormGroup row>
                           <label
-                            class="col-sm-1 col-form-label mr-6 "
+                            class="col-sm-3 col-form-label"
                             htmlFor="input-skills"
+                            
                           >
                             Skills:
                           </label>
-                          <Col sm="10" >
+                          <Col  >
                           <Input
                             class="form-control"
                             id="input-skills"
                             type="text"
                             placeholder="Seperate with comma.."
+                            onChange={e => setSkill_name(e.target.value)}
+                            
                           />
                           </Col>
                         </FormGroup>
                       </Col>
                     </Row>
-
+                    <span class="d-flex flex-row-reverse mx-7"  >
+                        <button type="submit" class="btn btn-success" onClick={btnSkills} disabled={btnDisabled}>Save</button>
+                    </span>
                     <Row className="align-items-center">
                       <Col xs="8">
                         <h1 className="mb-5 mt-5">SEMINARS / TRAININGS ATTENDED</h1>
@@ -1254,63 +1887,79 @@ function Profile  ()  {
                    </Row>
                   
                    
-                        <span class="d-flex flex-row-reverse mx-6"  >
-                        <button type="button" class="btn btn-primary" onClick={handleAddFields2}>Add Row</button>
+                        <span class="d-flex flex-row-reverse mx-7"  >
+                        <button type="button" class="btn btn-primary" onClick={handleAddFields2} disabled={btnDisabled}>Add Row</button>
                         </span>
                         
                         { inputFields2.map(inputField2 => (
                           <div >  
+                             <Row style={{display: "inline-flex", width: "100%"}}>
+                      <Col  sm="6" >
+                        <FormGroup row>
+                          <label
+                         
+                            class="col-sm-3 col-form-label"
+                            htmlFor="input-nameSeminar"
+                          >
+                            Name:
+                          </label>
+                     
+                        
+                      <Col md="9">
+                    
+                          <Input
+                                class="form-control"
+                                id="nameSeminar"
+                                name="Name2"
+                                label="Name"
+                                variant="filled"
+                                value={inputField2.Name2}
+                                onChange={event => handleChangeInput2(inputField2.id, event), e => setSeminar_name(e.target.value)}
+                          />
+                          </Col>
+                        </FormGroup>
+                      </Col>
+                    </Row>
 
-                            <div class="form-group row">
-                                    <label
-                                      class="col-sm-1 col-form-label" >Name:</label>
-                                <div class="col-sm-5 mx-6">
-                                    <Input
-                                      class="form-control"
-                                      id="nameSeminar"
-                                      name="Name2"
-                                      label="Name"
-                                      variant="filled"
-                                      value={inputField2.Name2}
-                                      onChange={event => handleChangeInput2(inputField2.id, event)}
-                                    />
-                                    </div>
-                            </div>
-                              
-                        
-                        
+                    <Row style={{display: "inline-flex", width: "100%"}}>
+                      <Col  sm="6">
+                        <FormGroup row>
+                          <label
+                         
+                            class="col-sm-3 col-form-label"
+                            htmlFor="input-seminarTaken"
+                          >
+                            Date Taken:
+                          </label>
                      
                       
-                            <div class="form-group row">
-                                    <label
-                                      class="col-sm-1 col-form-label"
-                                      
-                                    >
-                                    Date Taken:
-                                    </label>
-                                    <div class="col-sm-2 mx-6">
-                                    <Input
-                                       type="date"
-                                      class="form-control"
-                                      id="dateTaken"
-                                      name="dateTaken2"
-                                      label="Name"
-                                      variant="filled"
-                                      value={inputField2.dateTaken2}
-                                      onChange={event => handleChangeInput2(inputField2.id, event)}
-                                    />
-                                    </div>
-                           </div>    
-
+                      <Col sm="5">
+                     
+                          <Input
+                            
+                                  type="date"
+                                  class="form-control"
+                                  id="dateTaken"
+                                  name="dateTaken2"
+                                  label="Name"
+                                  variant="filled"
+                                  value={inputField2.dateTaken2}
+                                  onChange={event => handleChangeInput2(inputField2.id, event), e => setSeminar_date(e.target.value)}
+                          />
+                          </Col>
+                        </FormGroup>
+                      </Col>
+                    </Row>
+                    <span class="d-flex flex-row-reverse mx-7"  >
+                          <button type="button" class="btn btn-success" onClick={btnSeminar} disabled={btnDisabled} >Save</button>
+                          </span>
                           
  
                           </div>
                           )) }
 
 
-                           <span class="d-flex flex-row-reverse mx-6"  >
-                          <button type="button" class="btn btn-success" >Save</button>
-                          </span>
+                          
 
                     {/* ---------------------------------------------------- */}
                     <Row className="align-items-center">
@@ -1320,13 +1969,290 @@ function Profile  ()  {
                    </Row>
                       {/* ---------------------------------------------------- */}
 
-                      <span class="d-flex flex-row-reverse mx-6"  >
-                        <button type="button" class="btn btn-primary" onClick={handleAddFields3}>Add Row</button>
+                      <span class="d-flex flex-row-reverse mx-7"  >
+                        <button type="button" class="btn btn-primary" onClick={handleAddFields3} disabled={btnDisabled}>Add Row</button>
                         </span>
                         
                         { inputFields3.map(inputField3 => (
                           <div >  
 
+                            
+                      <Row style={{display: "inline-flex", width: "100%"}}>
+                      <Col  sm="6">
+                        <FormGroup row>
+                          <label
+                         
+                            class="col-sm-3"
+                            htmlFor="input-empName"
+                          >
+                            Employer Name:
+                          </label>
+                     
+                       
+                      <Col sm="9">
+                      
+                          <Input
+                                class="form-control"
+                                id="empName"
+                                name="empName"
+                                label="empName"
+                                variant="filled"
+                                value={inputField3.empName}
+                                onChange={event => handleChangeInput3(inputField3.id, event), e => setEmployer_name(e.target.value)}
+                          />
+                          </Col>
+                        </FormGroup>
+                      </Col>
+                    </Row>
+
+                    <Row style={{display: "inline-flex", width: "100%"}}>
+                      <Col  sm="6">
+                        <FormGroup row>
+                          <label
+                         
+                            class="col-sm-3"
+                            htmlFor="input-empAdd"
+                          >
+                            Company Address:
+                          </label>
+                     
+                     
+                      <Col sm="9">
+                     
+                          <Input
+                             class="form-control"
+                             id="empAdd"
+                             name="empAdd"
+                             label="empAdd"
+                             variant="filled"
+                             value={inputField3.empAdd}
+                             onChange={event => handleChangeInput3(inputField3.id, event), e => setCompany_address(e.target.value)}
+                          />
+                          </Col>
+                        </FormGroup>
+                      </Col>
+                    </Row>
+
+                    <Row style={{display: "inline-flex", width: "100%"}}>
+                      <Col sm="6">
+                        <FormGroup row>
+                          <label
+                            class="col-sm-3  "
+                            htmlFor="input-empTelNo"
+                          >
+                           Telephone Number:
+                          </label>
+                          <Col sm="9">
+                          <Input
+                             class="form-control"
+                             id="input-empTelNo"
+                             name="empTelNo"
+                             label="empTelNo"
+                             variant="filled"
+                             value={inputField3.empTelNo}
+                             onChange={event => handleChangeInput3(inputField3.id, event), e => setCompany_contact_no(e.target.value)}
+                          />
+                          </Col>
+                        </FormGroup>
+                      </Col>
+              
+                    </Row>
+
+                    <Row style={{display: "inline-flex", width: "100%"}}>
+                      <Col sm="6">
+                        <FormGroup row>
+                          <label
+                            class="col-sm-3 col-form-label"
+                            htmlFor="input-empVisor"
+                          >
+                           Supervisor:
+                          </label>
+                          <Col sm="9">
+                          <Input
+                                class="form-control"
+                                id="input-empVisor"
+                                name="empSuVisor"
+                                label="empSuVisor"
+                                variant="filled"
+                                value={inputField3.empSuVisor}
+                                onChange={event => handleChangeInput3(inputField3.id, event),e => setCompany_supervisor(e.target.value)}
+                          />
+                          </Col>
+                        </FormGroup>
+                      </Col>
+              
+                    </Row>
+
+                    <Row style={{display: "inline-flex", width: "100%"}}>
+                      <Col sm="6">
+                        <FormGroup row>
+                          <label
+                            class="col-sm-3 col-form-label"
+                            htmlFor="empTitle"
+                          >
+                           Job Title:
+                          </label>
+                          <Col sm="9">
+                          <Input
+                               class="form-control"
+                               id="empTitle"
+                               name="empTitle"
+                               label="empTitle"
+                               variant="filled"
+                               value={inputField3.empTitle}
+                               onChange={event => handleChangeInput3(inputField3.id, event), e => setJob_title(e.target.value)}
+                          />
+                          </Col>
+                        </FormGroup>
+                      </Col>
+              
+                    </Row>
+
+                    <Row style={{display: "inline-flex", width: "100%"}}>
+                      <Col sm="6">
+                        <FormGroup row>
+                          <label
+                            class="col-sm-3 "
+                            htmlFor="input-empStartingIncome"
+                          >
+                           Starting Income:
+                          </label>
+                          <Col sm="9">
+                          <Input
+                              class="form-control"
+                              id="input-empStartingIncome"
+                              name="empStartIncome"
+                              label="empStartIncome"
+                              variant="filled"
+                              value={inputField3.empStartIncome}
+                              onChange={event => handleChangeInput3(inputField3.id, event), e => setStarting_income(e.target.value)}
+                          />
+                          </Col>
+                        </FormGroup>
+                      </Col>
+              
+                    </Row>
+
+                    <Row style={{display: "inline-flex", width: "100%"}}>
+                      <Col sm="6">
+                        <FormGroup row>
+                          <label
+                            class="col-sm-3 "
+                            htmlFor="input-empLastIncome"
+                          >
+                          <span style={{display: "inline-flex"}}>Last<br/>Income:</span>
+                          </label>
+                          <Col sm="9">
+                          <Input
+                              class="form-control"
+                              id="input-empLastIncome"
+                              name="empLastIncone"
+                              label="empLastIncone"
+                              variant="filled"
+                              value={inputField3.empLastIncone}
+                              onChange={event => handleChangeInput3(inputField3.id, event), e => setLast_income(e.target.value)}
+                          />
+                          </Col>
+                        </FormGroup>
+                      </Col>
+              
+                    </Row>
+
+                    <Row style={{display: "inline-flex", width: "100%"}}>
+                      <Col  sm="6">
+                        <FormGroup row>
+                          <label
+                         
+                            class="col-sm-3 "
+                            htmlFor="empRFL"
+                          >
+                            Reason for Leaving:
+                          </label>
+                     
+                       
+                      <Col md="9">
+                     
+                          <Input
+                                class="form-control"
+                                id="empRFL"
+                                name="empRFL"
+                                label="empRFL"
+                                variant="filled"
+                                value={inputField3.empRFL}
+                                onChange={event => handleChangeInput3(inputField3.id, event), e => setReason_leave(e.target.value)}
+                          />
+                          </Col>
+                        </FormGroup>
+                      </Col>
+                    </Row>
+               
+                    <Row >
+                      <Col sm="12" >
+                        <FormGroup row >
+                          <label
+                            class="col-sm-10"
+                            htmlFor="input-first-name"
+                          >
+                            Have you ever terminated in a job?
+                          </label>
+                          <Row sm="10" style={{display: "inline-flex"}}>
+                          <div class="form-check form-check-inline" >
+                            <input 
+                            class="form-check-input" 
+                            type="radio" name="illnesses" 
+                            id="inlineRadio1" 
+                            value="true" 
+                            onChange ={ e => setHas_been_terminated(e.target.value)}
+                            />
+                            <label class="form-check-label" for="inlineRadio1">YES</label>
+                          </div>
+                          <div class="form-check form-check-inline">
+                            <input 
+                            class="form-check-input" 
+                            type="radio" name="illnesses" 
+                            id="inlineRadio2" value="false" 
+                            onChange ={ e => setHas_been_terminated(e.target.value)}
+                            />
+                            <label class="form-check-label" for="inlineRadio2">NO</label>
+                          </div>
+
+                          </Row >
+                        </FormGroup>
+                      </Col>
+                    </Row>
+
+                    <Row>
+                      <Col sm="11">
+                        <FormGroup row>
+                          <label
+                            class="col-sm-auto col-form-label"
+                            htmlFor="details"
+                          >
+                             If yes, state the reason:
+                          </label>
+                          <Col>
+                          <div className="pl-lg-0">
+                                <FormGroup>
+                                
+                                  <Input
+                                    className="form-control-alternative"
+                                    id="details"
+                                    rows="5"                    
+                                    type="textarea"
+                                    onChange ={ e => setHas_terminated_reason(e.target.value)}
+                                
+                                  />
+                                </FormGroup>
+                          </div>
+                          </Col >
+                        </FormGroup>
+                       </Col>
+                    </Row>
+                    <span class="d-flex flex-row-reverse mx-7"  >
+                        <button type="button" class="btn btn-success" onClick={btnJobHistory} disabled={btnDisabled} >Save</button>
+                    </span>
+                    
+{/* 
                             <div class="form-group row">
                                     <label
                                       class="col-sm-auto col-form-label" >Employer Name:</label>
@@ -1514,14 +2440,11 @@ function Profile  ()  {
                           </Col >
                         </FormGroup>
                        </Col>
-                          </div>
+                          </div> */}
                           </div>
                           
                           )) }
 
-                    <span class="d-flex flex-row-reverse mx-6"  >
-                        <button type="button" class="btn btn-success" >Save</button>
-                    </span>
 
                        {/* ---------------------------------------------------- */}
                        <Row className="align-items-center">
@@ -1531,25 +2454,26 @@ function Profile  ()  {
                    </Row>
                       {/* ---------------------------------------------------- */}
 
-                      <Row>
-                      <Col sm="6">
-                        <FormGroup row>
-                          <label
-                            class="col-sm-3 col-form-label"
-                            htmlFor="input-nameFather"
-                          >
-                           Father's Name:
-                          </label>
-                          <Col sm="8">
-                          <Input
-                            class="form-control"
-                            id="input-nameFather"
-                            type="text"
-                          />
-                          </Col>
-                        </FormGroup>
-                      </Col>
-                      <Col sm="6">
+                      <Row style={{display: "inline-flex", width: "100%"}}>
+                        <Col sm="6">
+                          <FormGroup row>
+                            <label
+                              class="col-sm-3 "
+                              htmlFor="input-nameFather"
+                            >
+                           <span style={{display: "flex"}}>Father's<br/>Name:</span>
+                            </label>
+                            <Col sm="8">
+                            <Input
+                              class="form-control"
+                              id="input-nameFather"
+                              type="text"
+                              onChange = {e => setFather_name(e.target.value)}
+                            />
+                            </Col>
+                          </FormGroup>
+                        </Col>
+                        <Col sm="6">
                         <FormGroup row>
                           <label
                             class="col-sm-3 col-form-label"
@@ -1560,15 +2484,17 @@ function Profile  ()  {
                           <Col sm="8">
                           <Input
                             class="form-control"
-                            id="input-last-occuFather"
+                            id="input-occuFather"
                             type="text"
+                            onChange = {e => setFather_occu(e.target.value)}
                           />
                           </Col>
                         </FormGroup>
                       </Col>
                     </Row>
 
-                    <Row>
+                   
+                    <Row style={{display: "inline-flex", width: "100%"}}>
                       <Col sm="6">
                         <FormGroup row>
                           <label
@@ -1577,25 +2503,29 @@ function Profile  ()  {
                           >
                             Birthday:
                           </label>
-                          <Col sm="4">
+                          <Col sm="5">
                           <Input
                             class="form-control"
                             id="input-bdayFather"
                             type="date"
+                            onChange = {e => setFather_birth(e.target.value)}
                           />
                           </Col >
                           
                           <label
-                            class="col-lr-1 col-form-label ml-7"
+                            class="col-sm-1 col-form-label"
                             htmlFor="input-ageFather"
+                            
                           >
-                            Age:
+                            <span style={{display: "flex"}}>Age:</span>
                           </label>
                           <Col sm="2">
                           <Input
                             class="form-control"
                             id="input-first-ageFather"
                             type="text"
+                            onChange = {e => setFather_age(e.target.value)}
+                           
                           />
                           </Col>
                         </FormGroup>
@@ -1615,6 +2545,8 @@ function Profile  ()  {
                             class="form-control"
                             id="input-empFather"
                             type="text"
+                            onChange = {e => setFather_employer(e.target.value)}
+                         
                           />
                           </Col>
                         </FormGroup>
@@ -1629,20 +2561,21 @@ function Profile  ()  {
                      </Row>
                      {/* ---------------------------------------------------- */}
 
-                     <Row>
+                     <Row style={{display: "inline-flex", width: "100%"}}>
                       <Col sm="6">
                         <FormGroup row>
                           <label
-                            class="col-sm-3 col-form-label"
+                            class="col-sm-3 "
                             htmlFor="input-nameMother"
                           >
-                           Mothers's Name:
+                           Mother's Name:
                           </label>
                           <Col sm="8">
                           <Input
                             class="form-control"
                             id="input-nameMother"
                             type="text"
+                            onChange = {e => setMother_name(e.target.value)}
                           />
                           </Col>
                         </FormGroup>
@@ -1660,40 +2593,44 @@ function Profile  ()  {
                             class="form-control"
                             id="input-occuMother"
                             type="text"
+                            onChange = {e => setMother_occu(e.target.value)}
                           />
                           </Col>
                         </FormGroup>
                       </Col>
                     </Row>
 
-                    <Row>
+                    <Row style={{display: "inline-flex", width: "100%"}}>
                       <Col sm="6">
                         <FormGroup row>
                           <label
                             class="col-sm-3 col-form-label"
-                            htmlFor="input-birthdayMother"
+                            htmlFor="input-birthdayMother"                          
                           >
                             Birthday:
                           </label>
-                          <Col sm="4">
+                          <Col sm="5">
                           <Input
                             class="form-control"
                             id="input-birthdayMother"
                             type="date"
+                            onChange = {e => setMother_Birth(e.target.value)}
                           />
                           </Col >
                           
                           <label
-                            class="col-lr-1 col-form-label ml-7"
+                            class="col-sm-1 col-form-label"
                             htmlFor="input-ageMother"
+                            
                           >
-                            Age:
+                            <span style={{display: "flex"}}>Age:</span>
                           </label>
                           <Col sm="2">
                           <Input
                             class="form-control"
-                            id="input-ageMother"
+                            id="input-first-ageMother"
                             type="text"
+                            onChange = {e => setMother_age(e.target.value)}
                           />
                           </Col>
                         </FormGroup>
@@ -1713,6 +2650,7 @@ function Profile  ()  {
                             class="form-control"
                             id="input-empMother"
                             type="text"
+                            onChange = {e => setMother_employer(e.target.value)}
                           />
                           </Col>
                         </FormGroup>
@@ -1720,44 +2658,52 @@ function Profile  ()  {
                     </Row>
 
 
-                    <Row>
-                      <Col sm="8">
+                    <Row style={{display: "inline-flex", width: "100%"}}>
+                      <Col  sm="6">
                         <FormGroup row>
                           <label
-                            class="col-sm-2 col-form-label mr-3 "
+                         
+                            class="col-sm-3 col-form-label"
                             htmlFor="input-addMother"
                           >
                             Address:
                           </label>
-                          <Col sm="8" >
+                     
+                     
+                      <Col md="8">
+                   
                           <Input
-                            class="form-control"
+                            class="form-control "
                             id="input-addMother"
                             type="text"
+                            onChange = {e => setFamily_address(e.target.value)}
                           />
                           </Col>
                         </FormGroup>
                       </Col>
 
-                      <Col sm="4">
+                      <Col sm="6">
                         <FormGroup row >
                           <label
-                            class="col-sm-4 col-form-label mr-3"
+                            class="col-sm-3"
                             htmlFor="input-telMother"
                           >
-                            Telephone No.:
+                            Telephone Number:
                           </label>
-                          <Col sm="6" >
+                          <Col sm="8" >
                           <Input
                             class="form-control"
                             id="input-telMother"
                             type="text"
+                            onChange = {e => setFamily_contact_no(e.target.value)}
                           />
                           </Col>
                         </FormGroup>
                       </Col>
                     </Row>
-
+                    <span class="d-flex flex-row-reverse mx-6"  >
+                        <button type="button" class="btn btn-success" onClick={btnFamily} disabled={btnDisabled} >Save</button>
+                    </span>   
                     <Row className="align-items-center">
                       <Col xs="8">
                         <h1 className="mb-5 mt-5">BROTHERS & SISTERS</h1>
@@ -1765,13 +2711,122 @@ function Profile  ()  {
                      </Row>
 
                      <span class="d-flex flex-row-reverse mx-6"  >
-                        <button type="button" class="btn btn-primary" onClick={handleAddFields4}>Add Row</button>
+                        <button type="button" class="btn btn-primary" onClick={handleAddFields4} disabled={btnDisabled}>Add Row</button>
                         </span>
 
                         { inputFields4.map(inputField4 => (
                           <div >  
 
-                            <div class="form-group row">
+                            
+                    <Row style={{display: "inline-flex", width: "100%"}}>
+                      <Col sm="6">
+                        <FormGroup row>
+                          <label
+                         
+                            class="col-sm-3 col-form-label"
+                            htmlFor="nameBrother"
+                          >
+                            Name:
+                          </label>
+                     
+                     
+                      <Col md="9">
+                     
+                          <Input
+                              class="form-control"
+                              id="nameBrother"
+                              name="Name4"
+                              label="Name"
+                              variant="filled"
+                              value={inputField4.Name4}
+                              onChange={event => handleChangeInput4(inputField4.id, event), e=> setSibling_name(e.target.value)}
+                         
+                          />
+                          </Col>
+                        </FormGroup>
+                      </Col>
+                    </Row>
+
+
+                    <Row style={{display: "inline-flex", width: "100%"}}>
+                      <Col  sm="6">
+                        <FormGroup row>
+                          <label
+                         
+                            class="col-3 col-form-label"
+                            htmlFor="occuBrother"
+                          >
+                            Occupation:
+                          </label>
+                     
+                      
+                      <Col sm="4" >
+                          <Input
+                              class="form-control"
+                              id="occuBrother"
+                              name="occupation"
+                              label="Name"
+                              variant="filled"
+                              value={inputField4.occupation}
+                              onChange={event => handleChangeInput4(inputField4.id, event), e=> setSibling_occupation(e.target.value)}
+                        
+                          />
+                        </Col>
+                                <label
+                                  class="col-sm-2 col-form-label"
+                                  htmlFor="ageBrother"
+                                >
+                                  Age:
+                                </label>
+                        
+                          <Col sm="3">
+                              <Input
+                                  class="form-control"
+                                  id="ageBrother"
+                                  name="age"
+                                  variant="filled"
+                                  value={inputField4.age}
+                                  onChange={event => handleChangeInput4(inputField4.id, event), e=> setSibling_age(e.target.value)}
+                              />
+                          </Col>
+                        </FormGroup>
+                      </Col>
+                    </Row>
+
+
+
+                    <Row style={{display: "inline-flex", width: "100%"}}> 
+                      <Col  sm="6">
+                        <FormGroup row>
+                          <label
+                         
+                            class="col-sm-3 col-form-label"
+                            htmlFor="empBrother"
+                          >
+                            Employer:
+                          </label>
+                     
+                        
+                      <Col md="9">
+                    
+                          <Input
+                              class="form-control"
+                              id="empBrother"
+                              name="emp"
+                              label="Name"
+                              variant="filled"
+                              value={inputField4.emp}
+                              onChange={event => handleChangeInput4(inputField4.id, event), e=> setSibling_employer(e.target.value)}
+                          />
+                          </Col>
+                        </FormGroup>
+                      </Col>
+                    </Row>
+                    <span class="d-flex flex-row-reverse mx-6"  >
+                        <button type="button" class="btn btn-success" onClick={btnSiblings} disabled={btnDisabled} >Save</button>
+                    </span>
+
+                            {/* <div class="form-group row">
                                     <label
                                       class="col-sm-1 col-form-label" >Name:</label>
                                 <div class="col-sm-5 mx-6">
@@ -1843,7 +2898,7 @@ function Profile  ()  {
                                       onChange={event => handleChangeInput4(inputField4.id, event)}
                                     />
                                     </div>
-                            </div>
+                            </div> */}
  
                           </div>
                           )) }
@@ -1855,11 +2910,12 @@ function Profile  ()  {
                       </Col>
                      </Row>
 
-                     <Row>
+
+                     <Row style={{display: "inline-flex", width: "100%"}}>
                       <Col sm="6" >
                         <FormGroup row>
                           <label
-                            class="col-sm-3 col-form-label"
+                            class="col-sm-3 "
                             htmlFor="nameSpouse"
                          
                           >
@@ -1870,6 +2926,8 @@ function Profile  ()  {
                             class="form-control"
                             id="nameSpouse"
                             type="text"
+                            onChange = {e => setSpouse_name(e.target.value)}
+                          
                           />
                           </Col>
                         </FormGroup>
@@ -1888,84 +2946,106 @@ function Profile  ()  {
                           <Input
                             class="form-control"
                             id="occuSpouse"
-                            type="email"
+                            type="text"
+                            onChange = {e => setSpouse_occupation(e.target.value)}
                           />
                           </Col>
                         </FormGroup>
                       </Col>
                     </Row>
-                    <Row>
+
+                    <Row style={{display: "inline-flex", width: "100%"}}>
                       <Col sm="6">
                         <FormGroup row>
                           <label
                             class="col-sm-3 col-form-label"
-                            htmlFor="birthdaySpouse"
-                          
+                            htmlFor="input-birthdaySpouse"
                           >
                             Birthday:
                           </label>
-                          <Col sm="4">
+                          <Col sm="5">
                           <Input
                             class="form-control"
-                            id="birthdaySpouse"
+                            id="input-birthdaySpouse"
                             type="date"
+                            onChange = {e => setSpouse_birth(e.target.value)}
+                     
                           />
                           </Col >
                           
                           <label
-                            class="col-lr-1 col-form-label ml-7"
-                            htmlFor="ageSpouse"
+                            class="col-sm-1 col-form-label"
+                            htmlFor="input-ageSpouse"
+                            
                           >
-                            Age:
+                            <span style={{display: "flex"}}>Age:</span>
                           </label>
                           <Col sm="2">
                           <Input
                             class="form-control"
-                            id="ageSpouse"
+                            id="input-first-ageSpouse"
                             type="text"
+                            onChange = {e => setSpouse_age(e.target.value)}
                           />
                           </Col>
                         </FormGroup>
                       </Col>
+
+
                       <Col sm="6">
                         <FormGroup row>
                           <label
-                            class="col-sm-3 col-form-label"
-                            htmlFor="empSpouse"
+                            class="col-sm-3"
+                            htmlFor="input-empSpouse"
                           >
                             Employer Name:
                           </label>
                           <Col sm="8">
                           <Input
                             class="form-control"
-                            id="empSpouse"
+                            id="input-empSpouse"
                             type="text"
+                            onChange = {e => setSpouse_employer(e.target.value)}
+                          
                           />
                           </Col>
                         </FormGroup>
                       </Col>
                     </Row>
-                    <Row>
-                      <Col sm="8">
+
+                    <Row style={{display: "inline-flex", width: "100%"}}>
+                      <Col  sm="6">
                         <FormGroup row>
                           <label
-                            class="col-sm-2 col-form-label  "
-                            htmlFor="addEmpSpouse"
+                         
+                            class="col-sm-3 col-form-label"
+                            htmlFor="input-spouseAdd"
                           >
                             Address:
                           </label>
-                          <Col sm="9" >
-                            <div class="mx-4">
+                     
+                     
+                      <Col md="8">
+                    
                           <Input
-                          
-                            class="form-control"
-                            id="addEmpSpouse"
+                            class="form-control "
+                            id="input-spouseAdd"
                             type="text"
+                            onChange = {e => setSpouse_address(e.target.value)}
+                           
                           />
-                          </div>
                           </Col>
+                         
                         </FormGroup>
+                       
                       </Col>
+                      <FormGroup row>
+                      <Col sm="8">
+                      <span style={{marginLeft:'390px'}}>
+                            <button type="button" class="btn btn-success" onClick={btnMarried} disabled={btnDisabled} >Save</button>
+                      </span>
+                      </Col>
+                      </FormGroup>
                     </Row>
 
                     <Row className="align-items-center">
@@ -1973,14 +3053,71 @@ function Profile  ()  {
                         <h1 className="mb-5 mt-5"></h1>
                       </Col>
                      </Row>
-
+                    
+           
+                
+              
                      <span class="d-flex flex-row-reverse mx-6"  >
-                        <button type="button" class="btn btn-primary" onClick={handleAddFields5}>Add Row</button>
+                        <button type="button" class="btn btn-primary" onClick={handleAddFields5} disabled={btnDisabled}>Add Row</button>
                         </span>
-
+                            <br/>
                         { inputFields5.map(inputField5 => (
                           <div >  
-                            <div class="form-group row">
+                                <Row style={{display: "inline-flex", width: "100%"}}>
+                      <Col  sm="6">
+                        <FormGroup row>
+                          <label
+                         
+                            class="col-sm-3 "
+                            htmlFor="input-nameChild"
+                          >
+                            <span style={{display: "inline-flex"}}>Name of<br/>Child:</span>
+                          </label>
+                     
+                      
+                      <Col sm="8" >
+                     
+                          <Input
+                              class="form-control"
+                              id="input-nameChild"
+                              name="Namechld"
+                              label="Name"
+                              variant="filled"
+                              value={inputField5.Namechld}
+                              onChange={event => handleChangeInput5(inputField5.id, event), e => setChild_name(e.target.value)}
+                          />
+                          </Col>
+                          </FormGroup>
+                      </Col>
+
+                      <Col sm="6">
+                        <FormGroup row>
+                          <label
+                         
+                            class="col-sm-3 col-form-label"
+                            htmlFor="input-ageChild"
+                          >
+                            Age:
+                          </label>
+                     
+                       
+                     
+                      <Col sm="2">
+                      
+                          <Input
+                           class="form-control"
+                           name="input-agechld"
+                           id="ageChild"
+                           variant="filled"
+                           value={inputField5.agechld}
+                           onChange={event => handleChangeInput5(inputField5.id, event), e => setChild_age(e.target.value)}
+                          />
+                         
+                      </Col>
+                      </FormGroup>
+                      </Col>
+                    </Row>
+                            {/* <div class="form-group row">
                                     <label
                                       class="col-sm-auto col-form-label"
                                   
@@ -2016,47 +3153,59 @@ function Profile  ()  {
                                       onChange={event => handleChangeInput5(inputField5.id, event)}
                                     />
                                     </div>
-                           </div>    
+                           </div>     */}
 
- 
+                          <span class="d-flex flex-row-reverse mx-6"  >
+                              <button type="button" class="btn btn-success" onClick={btnChildren} disabled={btnDisabled} >Save</button>
+                          </span>
+
                           </div>
                           )) }
 
-                    <span class="d-flex flex-row-reverse mx-6"  >
-                        <button type="button" class="btn btn-success" >Save</button>
-                    </span>
-
+                   
                     <Row className="align-items-center">
                       <Col xs="8">
                         <h1 className="mb-5 mt-5">E. MEDICAL HISTORY</h1>
                       </Col>
                      </Row>
 
-                     <Row>
-                      <Col sm="9">
-                        <FormGroup row>
+                     <Row >
+                      <Col sm="12" >
+                        <FormGroup row >
                           <label
-                            class="col-sm-4 col-form-label"
+                            class="col-sm-10"
                             htmlFor="input-first-name"
                           >
                             1. Have you had or do you have illnesses?
                           </label>
-                          <Col sm="8">
-                          <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="illness" id="inlineRadio3" value="option1"/>
-                            <label class="form-check-label" for="inlineRadio3" >YES</label>
+                          <Row sm="10" style={{display: "inline-flex"}}>
+                          <div class="form-check form-check-inline" >
+                            <input 
+                            class="form-check-input" 
+                            type="radio" name="illnesses" 
+                            id="inlineRadio3" 
+                            value="true"
+                            onChange={e => setHad_illness(e.target.value)}
+                            />
+                            <label class="form-check-label" for="inlineRadio3">YES</label>
                           </div>
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="illness" id="inlineRadio4" value="option2"/>
-                            <label class="form-check-label"for="inlineRadio4"  >NO</label>
+                            <input 
+                            class="form-check-input" 
+                            type="radio" name="illnesses" 
+                            id="inlineRadio4" 
+                            value="false"
+                            onChange={e => setHad_illness(e.target.value)}
+                            />
+                            <label class="form-check-label" for="inlineRadio4">NO</label>
                           </div>
 
-                          </Col >
+                          </Row >
                         </FormGroup>
-                       </Col>
+                      </Col>
                     </Row>
                     <Row>
-                      <Col sm="8">
+                      <Col sm="11">
                         <FormGroup row>
                           <label
                             class="col-sm-auto col-form-label"
@@ -2072,8 +3221,9 @@ function Profile  ()  {
                                     class="form-control"
                                     id="details"
                                     rows="5"
-                                
+                                    onChange={e => setIllness_details(e.target.value)}
                                     type="textarea"
+                                
                                   />
                                 </FormGroup>
                           </div>
@@ -2082,31 +3232,45 @@ function Profile  ()  {
                        </Col>
                     </Row>
 
-                    <Row>
+                    <Row >
                       <Col sm="12">
                         <FormGroup row>
                           <label
-                            class="col-sm-5 col-form-label"
+                            class="col-sm-10"
                             htmlFor="input-first-name"
                           >
                             2. Have you been hospitalized or under a doctor's care within the past 5 years?
                           </label>
-                          <Col sm="3">
+                          <Row sm="10" style={{display: "inline-flex"}}>
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="hospitalized" id="inlineRadio5" value="option1"/>
+                            <input 
+                            class="form-check-input" 
+                            type="radio" name="hospitalized" 
+                            id="inlineRadio5" 
+                            value="true"
+                            onChange={e => setHospitalized(e.target.value)}
+                            />
                             <label class="form-check-label" for="inlineRadio5">YES</label>
                           </div>
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="hospitalized" id="inlineRadio6" value="option2"/>
+                            <input 
+                            class="form-check-input" 
+                            type="radio" 
+                            name="hospitalized" 
+                            id="inlineRadio6"
+                            value="false" 
+                            onChange={e => setHospitalized(e.target.value)}
+                             />
                             <label class="form-check-label" for="inlineRadio6">NO</label>
                           </div>
 
-                          </Col >
+                          </Row >
                         </FormGroup>
                        </Col>
                     </Row>
+
                     <Row>
-                      <Col sm="8">
+                      <Col sm="11">
                         <FormGroup row>
                           <label
                             class="col-sm-auto col-form-label"
@@ -2121,10 +3285,11 @@ function Profile  ()  {
                                   <Input
                                     class="form-control"
                                     id="details2"
-                                
+                                    onChange={e => setHospitalized_details(e.target.value)}
                                     rows="5"
                                 
                                     type="textarea"
+                                   
                                   />
                                 </FormGroup>
                           </div>
@@ -2145,68 +3310,72 @@ function Profile  ()  {
                         </FormGroup>
                        </Col>
                     </Row>
-                    <Row>
-                      <Col sm="6">
+                    <Row style={{display: "inline-flex", width: "100%"}}>
+                      <Col sm="6" >
                         <FormGroup row>
                           <label
                             class="col-sm-3 col-form-label"
-                            htmlFor="input-purpose"
+                            htmlFor="purpose"
+                         
                           >
-                            Purpose:
+                           Purpose:
                           </label>
                           <Col sm="8">
                           <Input
                             class="form-control"
-                            id="input-purpose"
+                            id="purpose"
                             type="text"
-                            
+                            onChange={e => setLast_checkup_purpose(e.target.value)}
                           />
-                          </Col >
+                          </Col>
                         </FormGroup>
-                       </Col>
-                      
+                      </Col>
                     </Row>
-                    <Row>
-                      <Col sm="6">
+                    <Row style={{display: "inline-flex", width: "100%"}}>
+                      <Col sm="6" >
                         <FormGroup row>
                           <label
                             class="col-sm-3 col-form-label"
-                            htmlFor="input-place"
+                            htmlFor="place"
+                         
                           >
-                            Place:
+                           Place:
                           </label>
                           <Col sm="8">
                           <Input
                             class="form-control"
-                            id="input-place"
+                            id="place"
                             type="text"
-                            
+                            onChange={e => setLast_checkup_place(e.target.value)}
+                        
                           />
-                          </Col >
+                          </Col>
                         </FormGroup>
-                       </Col>
-                      
+                      </Col>
                     </Row>
-                    <Row>
-                      <Col sm="6">
+                    <Row style={{display: "inline-flex", width: "100%"}}>
+                      <Col sm="6" >
                         <FormGroup row>
                           <label
                             class="col-sm-3 col-form-label"
-                            htmlFor="input-dateCheckUp"
+                            htmlFor="date"
+                         
                           >
-                            Date:
+                           Date:
                           </label>
-                          <Col sm="8">
+                          <Col sm="5">
                           <Input
                             class="form-control"
-                            id="input-dateCheckUp"
+                            id="date"
                             type="date"
-                            
+                            onChange={e => setLast_checkup_date(e.target.value)}
+                           
                           />
-                          </Col >
+                          </Col>
                         </FormGroup>
-                       </Col>
+                      </Col>
                     </Row>
+                   
 
                     <Row className="align-items-center">
                       <Col xs="8">
@@ -2214,20 +3383,23 @@ function Profile  ()  {
                       </Col>
                      </Row>
 
-                     <Row>
-                      <Col sm="6">
+                     <Row style={{display: "inline-flex", width: "100%"}}>
+                      <Col sm="12">
                         <FormGroup row>
                           <label
-                            class="col-sm-auto col-form-label "
+                            class="col-sm-3 col-form-label"
                             htmlFor="input-distMarks"
                           >
                             4. Distinguishing Marks:
                           </label>
-                          <Col sm="8">
+                          <Col md="8">
                           <Input
                             class="form-control"
                             id="input-distMarks"
+                            placeholder="Seperate with comma"
                             type="text"
+                            onChange={e => setDistinguishing_marks(e.target.value)}
+                         
                             
                           />
                           </Col >
@@ -2235,7 +3407,7 @@ function Profile  ()  {
                        </Col>
                     </Row>
                     <span class="d-flex flex-row-reverse mx-6"  >
-                        <button type="button" class="btn btn-success" >Save</button>
+                        <button type="button" class="btn btn-success" onClick={btnMedical} disabled={btnDisabled} >Save</button>
                     </span>
                     {/* -------------------------------------------- */}
                     <Row className="align-items-center">
@@ -2246,11 +3418,87 @@ function Profile  ()  {
                      {/* -------------------------------------------- */}
 
                      <span class="d-flex flex-row-reverse mx-6"  >
-                        <button type="button" class="btn btn-primary" onClick={handleAddFields6}>Add Row</button>
+                        <button type="button" class="btn btn-primary" onClick={handleAddFields6} disabled={btnDisabled}>Add Row</button>
                         </span>
 
                         { inputFields6.map(inputField6 => (
                           <div >  
+
+                    <Row style={{display: "inline-flex", width: "100%"}}>
+                      <Col sm="6">
+                        <FormGroup row>
+                          <label
+                            class="col-sm-3  col-form-label "
+                            htmlFor="input-Nameref"
+                          >
+                            Name:
+                          </label>
+                          <Col sm="9">
+                          <Input
+                           class="form-control"
+                           id="nameRef"
+                           name="Nameref"
+                           label="Name"
+                           variant="filled"
+                           value={inputField6.Nameref}
+                           onChange={event => handleChangeInput6(inputField6.id, event), e=> setRef_name(e.target.value)}
+                            
+                          />
+                          </Col >
+                        </FormGroup>
+                       </Col>
+                    </Row>
+
+                    <Row style={{display: "inline-flex", width: "100%"}}>
+                      <Col sm="6">
+                        <FormGroup row>
+                          <label
+                            class="col-sm-3 col-form-label "
+                            htmlFor="input-Occuref"
+                          >
+                            Occupation:
+                          </label>
+                          <Col sm="9">
+                          <Input
+                        id="occRef"
+                        class="form-control"
+                        name="occref"
+                        label="Name"
+                        variant="filled"
+                        value={inputField6.occref}
+                        onChange={event => handleChangeInput6(inputField6.id, event), e=> setRef_occupation(e.target.value)}
+                            
+                          />
+                          </Col >
+                        </FormGroup>
+                       </Col>
+                    </Row>
+
+                    <Row style={{display: "inline-flex", width: "100%"}}>
+                      <Col sm="6">
+                        <FormGroup row>
+                          <label
+                            class="col-sm-3 col-form-label"
+                            htmlFor="input-empref"
+                          >
+                            Employer:
+                          </label>
+                          <Col sm="9">
+                          <Input
+                           id="empRef"
+                           class="form-control"
+                           name="empref"
+                           label="Name"
+                           variant="filled"
+                           value={inputField6.empref}
+                           onChange={event => handleChangeInput6(inputField6.id, event), e=> setRef_employer(e.target.value)}
+                            
+                          />
+                          </Col >
+                        </FormGroup>
+                       </Col>
+                    </Row>
+{/* 
                             <div class="form-group row">
                                     <label
                                       class="col-sm-1 col-form-label"
@@ -2307,14 +3555,14 @@ function Profile  ()  {
                                       onChange={event => handleChangeInput6(inputField6.id, event)}
                                     />
                                     </div>
-                           </div>         
+                           </div>          */}
 
- 
+                          <span class="d-flex flex-row-reverse mx-6"  >
+                            <button type="button" class="btn btn-success" onClick={btnReference} disabled={btnDisabled} >Save</button>
+                          </span>
                           </div>
                           )) }
-                           <span class="d-flex flex-row-reverse mx-6"  >
-                            <button type="button" class="btn btn-success" >Save</button>
-                          </span>
+                          
 
 
                     {/* -------------------------------------------- */}
@@ -2325,12 +3573,77 @@ function Profile  ()  {
                      </Row>
                      {/* -------------------------------------------- */}
                      <span class="d-flex flex-row-reverse mx-6"  >
-                        <button type="button" class="btn btn-primary" onClick={handleAddFields7}>Add Row</button>
+                        <button type="button" class="btn btn-primary" onClick={handleAddFields7} disabled={btnDisabled}>Add Row</button>
                         </span>
 
                         { inputFields7.map(inputField7 => (
                           <div >  
-                            <div class="form-group row">
+
+                    <Row style={{display: "inline-flex", width: "100%"}}>
+                      <Col  sm="8">
+                        <FormGroup row>
+                          <label
+                         
+                            class="col-sm-3 "
+                            htmlFor="input-NameOrg"
+                          >
+                           <span style={{display: "inline-flex"}}>Organization<br/>Name:</span>
+                          </label>
+                     
+                        
+                      <Col sm="9">
+                    
+                          <Input
+                                   id="nameOrg"
+                                   class="form-control"
+                                   name="NameOrg"
+                                   label="Name"
+                                   variant="filled"
+                                   value={inputField7.NameOrg}
+                                   onChange={event => handleChangeInput7(inputField7.id, event), e => setOrg_name(e.target.value)}
+                          />
+                          </Col>
+                        </FormGroup>
+                      </Col>
+                    </Row>
+                    
+                    <Row style={{display: "inline-flex", width: "100%"}}>
+                      <Col sm="8">
+                        <FormGroup row>
+                          <label
+                         
+                            class="col-sm-3 col-form-label"
+                            htmlFor="input-Namedesc"
+                          >
+                          Descriptions:
+                          </label>
+                     
+                       
+                      <Col sm="9">
+                      
+                          <Input
+                            id="descOrg"
+                            class="form-control"
+                            name="descOrg"
+                            label="Name"
+                            variant="filled"
+                            value={inputField7.descOrg}
+                            onChange={event => handleChangeInput7(inputField7.id, event), e => setOrg_desc(e.target.value)}
+                          />
+                          </Col>
+                        </FormGroup>
+                      </Col>
+                    </Row>
+                    <span class="d-flex flex-row-reverse mx-6"  >
+                        <button type="button" class="btn btn-success" onClick={btnOrg} disabled={btnDisabled} >Save</button>
+                    </span>
+
+                    <Row className="align-items-center">
+                      <Col xs="8">
+                        <h1 className="mb-5 mt-5"></h1>
+                      </Col>
+                     </Row>
+                            {/* <div class="form-group row">
                                     <label
                                       class="col-sm-auto col-form-label"
                                  
@@ -2352,11 +3665,11 @@ function Profile  ()  {
                            <div class="form-group row">
                                     <label
                                       class="col-sm-auto col-form-label"
-                                   
+                                      style={{marginRight: "-5px"}}
                                     >
                                     Description :
                                     </label>
-                                    <div class="col-sm-6 mx-6">
+                                    <div class="col-sm-6 mx-6" style={{marginRight: "5px"}}>
                                     <Input
                                       id="descOrg"
                                       class="form-control"
@@ -2365,58 +3678,165 @@ function Profile  ()  {
                                       variant="filled"
                                       value={inputField7.descOrg}
                                       onChange={event => handleChangeInput7(inputField7.id, event)}
+                                      
                                     />
                                     </div>
-                           </div>
+                           </div> */}
                           </div>
                           )) }
 
 
-
-
-                    <Row>
+                    <Row >
                       <Col sm="12">
                         <FormGroup row>
                           <label
-                            class="col-sm-6 col-form-label"
+                            class="col-sm-10"
                             htmlFor="input-first-name"
                           >
                             1. Have you ever been convicted, judicially or administratively of an offense or judicially declared 
                               insolvent, spendthrift, or incapacitated to contract? 
                           </label>
-                          <Col sm="3">
+                          <Row sm="10" style={{display: "inline-flex"}}>
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="convicted" id="inlineRadio7" value="option1"/>
+                            <input 
+                            class="form-check-input"
+                             type="radio" 
+                             name="convicted" 
+                             id="inlineRadio7" 
+                             value="true" 
+                             onChange={e => setConvicted(e.target.value)}
+                             />
                             <label class="form-check-label" for="inlineRadio7">YES</label>
                           </div>
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="convicted" id="inlineRadio8" value="option2"/>
+                            <input 
+                            class="form-check-input" 
+                            type="radio" 
+                            name="convicted" 
+                            id="inlineRadio8" 
+                            value="false" 
+                            onChange={e => setConvicted(e.target.value)}
+                            />
                             <label class="form-check-label" for="inlineRadio8">NO</label>
                           </div>
 
-                          </Col >
+                          </Row >
                         </FormGroup>
                        </Col>
                     </Row>
-
                      
                         
 
-                        { inputFields8.map(inputField8 => (
+                    { inputFields8.map(inputField8 => (
                           <div >  
-                            <div class="form-group row">
+                    <Row style={{display: "inline-flex", width: "100%"}}>
+                      <Col  sm="8">
+                        <FormGroup row>
+                          <label
+                         
+                            class="col-sm-3 col-form-label"
+                            htmlFor="input-NameOrg"
+                          >
+                            Nature of Offense:
+                          </label>
+                     
+                        
+                      <Col sm="9">
+                    
+                          <Input
+                                 class="form-control"
+                                 name="NatureOff"
+                                 label="Name"
+                                 variant="filled"
+                                 value={inputField8.NatureOff}
+                                 onChange={event => handleChangeInput8(inputField8.id, event), e => setOffense_details(e.target.value)}
+                          />
+                          </Col>
+                        </FormGroup>
+                      </Col>
+                    </Row>
+                    
+                    <Row style={{display: "inline-flex", width: "100%"}}>
+                      <Col sm="8">
+                        <FormGroup row>
+                          <label
+                         
+                            class="col-sm-3 col-form-label"
+                            htmlFor="input-Namedesc"
+                          >
+                          Court of Jurisdiction:
+                          </label>
+                     
+                       
+                      <Col sm="9">
+                      
+                          <Input
+                             class="form-control"
+                             name="courtJuri"
+                             label="Name"
+                             variant="filled"
+                             
+                        
+                             value={inputField8.courtJuri}
+                             onChange={event => handleChangeInput8(inputField8.id, event),e => setOffense_court(e.target.value)}
+                          />
+                          </Col>
+                        </FormGroup>
+                      </Col>
+                    </Row>
+
+                    <Row style={{display: "inline-flex", width: "100%"}}>
+                      <Col sm="8">
+                        <FormGroup row>
+                              <label
+                                      class="col-sm-3 col-form-label"
+                                    >
+                                    Date Filed :
+                              </label>
+                       
+                      <Col sm="5">
+                      
+                          <Input
+                              class="form-control"
+                              name="dateFiled"
+                              label="Name"
+                              variant="filled"
+                              type='date'
+                             
+                              value={inputField8.dateFiled}
+                              onChange={event => handleChangeInput8(inputField8.id, event), e => setDate_filed(e.target.value)}
+                            />
+                          </Col>
+                        </FormGroup>
+                      </Col>
+                    </Row>
+
+
+
+
+
+
+
+
+
+
+
+{/* 
+                            <div class="form-group row" style={{display: "inline-flex", width: "100%"}} >
                                     <label
-                                      class="col-sm-auto col-form-label"
+                                      class="col-sm-3"
+                                     
                                       
                                     >
                                     Nature of Offense:
                                     </label>
-                                    <div class="col-sm-6 mx-3">
+                                    <div class="col-sm-6">
                                     <Input
                                       class="form-control"
                                       name="NatureOff"
                                       label="Name"
                                       variant="filled"
+                                    
                                       value={inputField8.NatureOff}
                                       onChange={event => handleChangeInput8(inputField8.id, event)}
                                     />
@@ -2425,16 +3845,18 @@ function Profile  ()  {
                            <div class="form-group row">
                                     <label
                                       class="col-sm-auto col-form-label"
-                                    
+                                      style={{marginRight:7}}
                                     >
                                     Court of Jurisdiction :
                                     </label>
                                     <div class="col-sm-6 ">
                                     <Input
+                                   
                                       class="form-control"
                                       name="courtJuri"
                                       label="Name"
                                       variant="filled"
+                                 
                                       value={inputField8.courtJuri}
                                       onChange={event => handleChangeInput8(inputField8.id, event)}
                                     />
@@ -2443,73 +3865,103 @@ function Profile  ()  {
                            <div class="form-group row">
                                     <label
                                       class="col-sm-auto col-form-label"
+                                      style={{marginRight:80}}
                                      
                                     >
                                     Date Filed :
                                     </label>
-                                    <div class="col-sm-6 mx-6">
+                                    <div class="col-md-2">
                                     <Input
                                       class="form-control"
                                       name="dateFiled"
                                       label="Name"
                                       variant="filled"
                                       type='date'
+                                     
                                       value={inputField8.dateFiled}
                                       onChange={event => handleChangeInput8(inputField8.id, event)}
                                     />
                                     </div>
-                           </div>
+                           </div> */}
                           </div>
                           )) }
 
-                    <Row>
+
+                    <Row >
                       <Col sm="12">
                         <FormGroup row>
                           <label
-                            class="col-sm-6 col-form-label"
+                            class="col-sm-6"
                             htmlFor="input-first-name"
+                            
                           >
-                            2. Have you had a record of any denial of registration, or termination for cause, and of any disciplinary 
-                            action taken, or sanction imposed, upon by agency, or by any exchange including any finding that 
+                          2. Have you had a record of any denial of registration, or termination for cause, and of any disciplinary 
+                            action taken,  or sanction imposed, upon by agency,  or by any exchange including any finding that
                             you were a cause of any disciplinary action or had violated any law?
-
                           </label>
-                          <Col sm="3">
-                          <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="termination" id="inlineRadio9" value="option1"/>
-                            <label class="form-check-label" for="inlineRadio9">YES</label>
-                          </div>
-                          <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="termination" id="inlineRadio10" value="option2"/>
-                            <label class="form-check-label" for="inlineRadio10">NO</label>
-                          </div>
+                          <Row sm="10" style={{display: "inline-flex", marginLeft: "100px"}}>
+                            <div class="form-check form-check-inline">
+                              <input 
+                              class="form-check-input" 
+                              type="radio" name="termination" 
+                              id="inlineRadio9" 
+                              value="true"
+                              onChange={e => setTermination_record(e.target.value)}
+                              />
+                              <label class="form-check-label" for="inlineRadio9">YES</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                              <input 
+                              class="form-check-input" 
+                              type="radio" name="termination" 
+                              id="inlineRadio10" 
+                              value="false" 
+                              onChange={e => setTermination_record(e.target.value)}
+                              />
+                              <label class="form-check-label" for="inlineRadio10">NO</label>
+                            </div>
 
-                          </Col >
+                          </Row >
                         </FormGroup>
                        </Col>
                     </Row>
 
+                    
+
                     <Row>
                       <Col sm="12">
                         <FormGroup row>
                           <label
-                            class="col-sm-6 col-form-label"
+                            class="col-sm-6 "
                             htmlFor="input-first-name"
                           >
                             3. Have you had a record of any denial, suspension, expulsion or revocation of any registration of a 
                             broker or dealer with which you were associated in any capacity when such action was taken?
                           </label>
-                          <Col sm="3">
+                         <Row sm="10" style={{display: "inline-flex", marginLeft: "100px"}}>
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="denial" id="inlineRadio11" value="option1"/>
+                            <input 
+                            class="form-check-input" 
+                            type="radio" name="denial" 
+                            id="inlineRadio11" 
+                            value="true"
+                            onChange={e => setRevocation_record(e.target.value)}
+                             />
                             <label class="form-check-label" for="inlineRadio11">YES</label>
                           </div>
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="denial" id="inlineRadio12" value="option2"/>
+                            <input 
+                            class="form-check-input" 
+                            type="radio" 
+                            name="denial" 
+                            id="inlineRadio12" 
+                            value="false" 
+                            onChange={e => setRevocation_record(e.target.value)}
+                            />
                             <label class="form-check-label" for="inlineRadio12">NO</label>
                           </div>
 
-                          </Col >
+                           </Row>
                         </FormGroup>
                        </Col>
                     </Row>
@@ -2518,23 +3970,37 @@ function Profile  ()  {
                       <Col sm="12">
                         <FormGroup row>
                           <label
-                            class="col-sm-6 col-form-label"
+                            class="col-sm-6 "
                             htmlFor="input-first-name"
                           >
                             4. Have you had a record of any permanent or temporary injunction entered against you or any broker 
                             or dealer with which you were associated in any capacity at the time such injunction was entered?
                           </label>
-                          <Col sm="3">
+                   <Row sm="10" style={{display: "inline-flex", marginLeft: "100px"}}>
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="injuction" id="inlineRadio13" value="option1"/>
+                            <input 
+                            class="form-check-input" 
+                            type="radio" 
+                            name="injunction" 
+                            id="inlineRadio13" 
+                            value="true"
+                            onChange={e => setInjunction_record(e.target.value)}
+                             />
                             <label class="form-check-label" for="inlineRadio13">YES</label>
                           </div>
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="injuction" id="inlineRadio14" value="option2"/>
+                            <input 
+                            class="form-check-input" 
+                            type="radio" 
+                            name="injunction" 
+                            id="inlineRadio14" 
+                            value="false" 
+                            onChange={e => setInjunction_record(e.target.value)}
+                            />
                             <label class="form-check-label" for="inlineRadio14">NO</label>
                           </div>
 
-                          </Col >
+                           </Row>
                         </FormGroup>
                        </Col>
                     </Row>
@@ -2551,22 +4017,36 @@ function Profile  ()  {
                             wrongful taking of property or bribery, forgery, counterfeiting or extortion, and the disposition of the 
                             foregoing?
                           </label>
-                          <Col sm="3">
+                        <Row sm="10" style={{display: "inline-flex", marginLeft: "100px"}}>
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="indictment" id="inlineRadio15" value="option15"/>
+                            <input 
+                            class="form-check-input" 
+                            type="radio" 
+                            name="indictment" 
+                            id="inlineRadio15" 
+                            value = "true"
+                            onChange={e => setArrest_record(e.target.value)}
+                             />
                             <label class="form-check-label" for="inlineRadio15">YES</label>
                           </div>
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="indictment" id="inlineRadio16" value="option16"/>
+                            <input 
+                            class="form-check-input" 
+                            type="radio" 
+                            name="indictment" 
+                            id="inlineRadio16" 
+                            value="false"
+                            onChange={e => setArrest_record(e.target.value)}
+                            />
                             <label class="form-check-label" for="inlineRadio16">NO</label>
                           </div>
 
-                          </Col >
+                          </Row>
                         </FormGroup>
                        </Col>
                     </Row>
                     <span class="d-flex flex-row-reverse mx-6"  >
-                        <button type="button" class="btn btn-success" >Save</button>
+                        <button type="button" class="btn btn-success" onClick={btnOffense} disabled={btnDisabled} >Save</button>
                     </span>
 {/* ---------------------------------------------------- */}
                     <Row className="align-items-center">
@@ -2576,7 +4056,7 @@ function Profile  ()  {
                      </Row>
 {/* --------------------------------------------------- */}
 
-                    <Row>
+                    <Row style={{display: "inline-flex", width: "100%"}} >
                       <Col sm="6">
                         <FormGroup row>
                           <label
@@ -2585,31 +4065,13 @@ function Profile  ()  {
                           >
                             Name:
                           </label>
-                          <Col sm="8">
+                          <Col sm="9">
                           <Input
                             class="form-control"
                             id="input-emerName"
                             type="text"
-                            
-                          />
-                          </Col >
-                        </FormGroup>
-                       </Col>
-                    </Row>
-                    <Row>
-                      <Col sm="6">
-                        <FormGroup row>
-                          <label
-                            class="col-sm-3 col-form-label"
-                            htmlFor="input-emerRelation"
-                          >
-                            Relationship:
-                          </label>
-                          <Col sm="8">
-                          <Input
-                            class="form-control"
-                            id="input-emerRelation"
-                            type="text"
+                            onChange = {e => setPerson_name(e.target.value)}
+                     
                             
                           />
                           </Col >
@@ -2617,11 +4079,35 @@ function Profile  ()  {
                        </Col>
                     </Row>
 
-                    <Row>
-                      <Col sm="7">
+                    <Row style={{display: "inline-flex", width: "100%"}}>
+                      <Col sm="6">
                         <FormGroup row>
                           <label
-                            class="col-sm-auto col-form-label mr-7"
+                            class="col-sm-3 col-form-label"
+                            htmlFor="input-emerRelation"
+                           
+                          >
+                          <span style={{display: "flex"}}>Relationship:</span>
+                          </label>
+                          <Col sm="9">
+                          <Input
+                            class="form-control"
+                            id="input-emerRelation"
+                            type="text"
+                            onChange = {e => setPerson_relationship(e.target.value)}
+                       
+                            
+                          />
+                          </Col >
+                        </FormGroup>
+                       </Col>
+                    </Row>
+
+                    <Row style={{display: "inline-flex", width: "100%"}}>
+                      <Col sm="6">
+                        <FormGroup row>
+                          <label
+                            class="col-sm-3  col-form-label"
                             htmlFor="input-emerAdd"
                           >
                             Address:
@@ -2631,7 +4117,9 @@ function Profile  ()  {
                             class="form-control"
                             id="input-emerAdd"
                             type="text"
-                            style={{marginLeft:5}}
+                            onChange = {e => setPerson_address(e.target.value)}
+                     
+                            
                             
                           />
                           </Col >
@@ -2639,37 +4127,42 @@ function Profile  ()  {
                        </Col>
                     </Row>
 
-                    <Row>
+                    <Row style={{display: "inline-flex", width: "100%"}}>
                       <Col sm="6">
                         <FormGroup row>
                           <label
-                            class="col-sm-3 col-form-label"
+                            class="col-sm-3 "
                             htmlFor="input-emerNum"
                           >
                             Phone Number:
                           </label>
-                          <Col sm="8">
+                          <Col sm="9">
                           <Input
                             class="form-control"
                             id="input-emerNumv"
                             type="text"
+                            onChange = {e => setPerson_phone(e.target.value)}
+                         
                             
                           />
                           </Col >
                         </FormGroup>
                        </Col>
                     </Row>
-
+                    <span class="d-flex flex-row-reverse mx-7" >
+                        <button type="button" class="btn btn-success" onClick={btnEmergency} disabled={btnDisabled} >Save</button>
+                    </span>
                     {/* ---------------------------------------------------- */}
                     <Row className="align-items-center">
                       <Col xs="8">
                         <h1 className="mb-5 mt-5">IMPORTANT NOTICE:</h1>
                       </Col>
                      </Row>
+                    
                     {/* --------------------------------------------------- */}
 
 
-                    <Row>
+                    <Row style={{display: "inline-flex", width: "100%"}}>
                       <Col sm="12">
                         <FormGroup row>
                           <label
@@ -2682,7 +4175,7 @@ function Profile  ()  {
 
                           </label>
                           <Col sm="6">
-                          <form>
+                          
                             <div class="d-flex flex-row-reverse mx-6">
                               
                          
@@ -2690,18 +4183,17 @@ function Profile  ()  {
                             <button type="button" class="btn btn-success" id="loadFileXml" onClick="document.getElementById('file').click();" >Upload Signature</button> */}
                              <FormGroup>
        
-                            <CustomInput type="file" id="exampleCustomFileBrowser" name="customFile" label="Upload Signature"></CustomInput>
+                            <CustomInput 
+                              type="file" 
+                              id="exampleCustomFileBrowser" 
+                              name="customFile" 
+                              label="Upload Signature"
+                              onChange = {e => setEmployee_signature(e.target.value)}
+                              >
 
-                            
-                            
-                            </FormGroup>
-
-
-                    
-                         
+                              </CustomInput>
+                            </FormGroup>     
                             </div>
-                          </form>
-
                           </Col >
                         </FormGroup>
                        </Col>
@@ -2718,8 +4210,8 @@ function Profile  ()  {
                     {/* --------------------------------------------------- */}
 
                   
-                      <span class="d-flex flex-row-reverse mx-6" >
-                      <button type="button" class="btn btn-primary btn-lg p-4 mb-5" >Create Employee</button>
+                      <span class="d-flex flex-row-reverse mx-7" >
+                      <button type="button" class="btn btn-primary btn-md p-3 mb-4" onClick={btnSignature} disabled={btnDisabled} >CREATE EMPLOYEE</button>
                       </span>
                  
 
@@ -2732,6 +4224,7 @@ function Profile  ()  {
           </Col>
         </Row>
       </Container>
+        
     </>
   );
 };

@@ -168,7 +168,11 @@ const Maps = () => {
                                     <ModalFooter style={{borderTop: "2px solid #E5ECF3"}}>
                                       <Button color="primary" onClick={toggs} data-dismiss="modal">Submit</Button>  
                                         <Modal size="md"centered isOpen={open} toggle={toggs} onClosed={closeAll ? toggle : undefined} >
-                                            <ModalHeader style={{borderBottom: "2px solid #E5ECF3"}} stoggle={toggs}><h2>Confirmation!</h2></ModalHeader>
+                                            <ModalHeader style={{borderBottom: "2px solid #E5ECF3"}} stoggle={toggs}><h2>Confirmation!
+                                                <button  type="button" onClick={toggs} class="close" data-dismiss="modal" aria-label="Close" style={{marginRight: "-340px"}}>
+                                                      <span className=" flex-row-reverse" aria-hidden="true" style={{fontWeight: "bolder", color: "black",  }}>X</span>
+                                                </button>  
+                                              </h2></ModalHeader>
                                             <ModalBody style={{height: "100px"}}>
                                                 Are you sure you want to deny this leave?
                                             </ModalBody>

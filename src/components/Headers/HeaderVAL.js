@@ -10,8 +10,8 @@ const HeaderVAL = () => {
       <div className="header bg-gradient-info pb-8 pt-5 pt-md-8">
         <Container fluid>
           <Row >
-          <Link id="dwnlnk" to="/admin/EmployeeList" style={{color:"white", fontSize:15, marginTop:"-65px", marginLeft:15}}>EMPLOYEE LIST {'>'} 2021-ABC  </Link> 
-          <div style={{color:"white", fontSize:20, marginTop:"-68px", fontWeight:'bold', marginLeft:10}}>{'>'} ATTENDANCE LOGS</div>
+          <Link id="dwnlnk" to="/admin/EmployeeList" style={{color:"white", fontSize:15, marginLeft:15}}>EMPLOYEE LIST {'>'} 2021-ABC  </Link> 
+          <div style={{color:"white", fontSize:25, marginTop:"-6px", fontWeight:'bold', marginLeft:10}}>{'>'} ATTENDANCE LOGS</div>
           </Row>
           <div className="header-body">
             

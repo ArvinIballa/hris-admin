@@ -180,6 +180,7 @@ const Sidebar = (props) => {
             <NavLink activeClassName="active" ><Link to="/admin/UploadFiles" style={{color:"black", marginLeft: "42px", fontWeight: "lighter"}}>Upload Files</Link></NavLink>
             <NavLink activeClassName="active" ><Link to="/admin/GovernmentDeduction" style={{color:"black", marginLeft: "42px", fontWeight: "lighter"}}>Government Deductions</Link></NavLink>
             <NavLink activeClassName="active" ><Link to="/admin/AttendanceArchive" style={{color:"black", marginLeft: "42px", fontWeight: "lighter"}}>Attendance Logs Archives</Link></NavLink>
+            <NavLink activeClassName="active" style={{marginLeft: "-3px"}}><i className="ni ni-curved-next text-blue"></i><Link to="/auth/login" style={{color:"black" }}>Logout</Link></NavLink>
           </Nav>
          
         </Collapse>

@@ -71,6 +71,7 @@ const Admin = (props) => {
           <AdminFooter />
         </Container>
       </div>
+      
     </>
   );
 };

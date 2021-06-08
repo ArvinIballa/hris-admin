@@ -2,8 +2,14 @@ import React, { useState } from 'react'
 
 import Memo from './Memo';
 import Memoform from './Memoform';
-
-
+import AdminFooter from "components/Footers/AdminFooter.js";
+import {
+   
+    Container,
+  
+   
+  } from "reactstrap";
+  
 function MemoList() {
     const [memos, setMemos] = useState([]);
 
@@ -40,10 +46,11 @@ function MemoList() {
 
 
     return (
-        <div>
+        <>
             <Memoform onSubmit={addMemo}/>
-            <Memo memos={memos} completeMemo={completeMemo} removeMemo={removeMemo}/>
-        </div>
+            <Memo memos={memos} completeMemo={completeMemo} removeMemo={removeMemo}/>            
+        </>
+        
     )
 }
 

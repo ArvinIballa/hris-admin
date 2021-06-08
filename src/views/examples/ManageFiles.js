@@ -20,6 +20,7 @@ import {
   ModalHeader, 
   ModalBody, 
   ModalFooter,
+  CustomInput,
  
 } from "reactstrap";
 // core components
@@ -51,9 +52,16 @@ const Icons = () => {
             <Card className="shadow">
               <CardHeader className="bg-transparent" style={{display:"flex"}}>
                   <Col >
-                    <Button color="success" onClick={toggle} style={{marginLeft: "-14px"}} >Create Folder</Button>
+                    <Button color="success" onClick={toggle} style={{marginLeft: "-14px"}} >Create Folder
+                         
+                    </Button>
                       <Modal isOpen={modal} toggle={toggle} centered >
-                        <ModalHeader style={{borderBottom: "2px solid #E5ECF3"}}><h2>Create New Folder</h2></ModalHeader>
+                        <ModalHeader style={{borderBottom: "2px solid #E5ECF3", display: "flex"}}><h2>Create New Folder
+                                <button  type="button" onClick={toggle} class="close" data-dismiss="modal" aria-label="Close" style={{marginRight: "-300px"}}>
+                                    <span className=" flex-row-reverse" aria-hidden="true" style={{fontWeight: "bolder", color: "black",  }}>X</span>
+                                </button>    
+                                </h2>                   
+                          </ModalHeader>
                         <ModalBody>
                           <FormGroup row style={{marginTop: "20px"}}>
                             <Label for="exampleEmail" xs={4}>Folder Name :</Label>
@@ -64,7 +72,7 @@ const Icons = () => {
                         </ModalBody>
                         <ModalFooter style={{borderTop: "2px solid #E5ECF3"}}>
                           <Button color="success" onClick={toggle}>Create</Button>{' '}
-                          <Button color="danger" onClick={toggle}>Cancel</Button>
+                          
                         </ModalFooter>
                       </Modal>
                   
@@ -91,20 +99,36 @@ const Icons = () => {
                   <Button onClick={open} style={{width: "225px", height: "200px"}} >
                           <i  className="ni ni-fat-add" style={{fontSize: "150px", color:"#339EFF"}}></i>  
                       </Button>
-                      <Modal size="lg" isOpen={modalIsOpen} toggle={open} >
-                        <ModalHeader style={{borderBottom: "2px solid #E5ECF3"}}><h2 style={{marginTop: "10px"}}>Add Document</h2></ModalHeader>
+                      <Modal size="md" isOpen={modalIsOpen} toggle={open} centered>
+                        <ModalHeader style={{borderBottom: "2px solid #E5ECF3", display: "flex"}}>
+                          <h2 style={{marginTop: "10px", }}>Add Document
+                                    <button  type="button" onClick={open} class="close" data-dismiss="modal" aria-label="Close" style={{marginRight: "-320px"}}>
+                                        <span className=" flex-row-reverse" aria-hidden="true" style={{fontWeight: "bolder", color: "black",  }}>X</span>
+                                    </button>
+                                    </h2>
+                        </ModalHeader>           
                         <ModalBody>
                           <FormGroup row >
                             <div>
                                 <div>
-                                  <DropZone />
+                                  <form >
+                                        <div class="d-flex flex-row-reverse mx-7" style={{marginTop: "40px"}} >
+                  
+                                        {/* <input type="file" style={{display:'none'}} id="file" name="file"/>
+                                        <button type="button" class="btn btn-success" id="loadFileXml" onClick="document.getElementById('file').click();" >Upload Signature</button> */}
+                                        <FormGroup>
+                  
+                                        <CustomInput type="file" id="exampleCustomFileBrowser" name="customFile" label="Upload File"></CustomInput>
+                                        </FormGroup>
+                                        </div>
+                                  </form>
                               </div>
                             </div>
                           </FormGroup>
                         </ModalBody>
                         <ModalFooter style={{borderTop: "2px solid #E5ECF3"}}>
-                          <Button color="success" className="file-upload-btn" >Upload Files</Button> 
-                          <Button color="danger" onClick={open}>Cancel</Button>
+                          <Button color="success" className="file-upload-btn" >Submit</Button> 
+                          
                         </ModalFooter>
                       </Modal>
                  

@@ -11,8 +11,8 @@ const HeaderMR = () => {
         <Container fluid>
 
           <Row >
-          <Link id="dwnlnk" to="/admin/EmployeeList" style={{color:"white", fontSize:15, marginTop:"-65px", marginLeft:15}}>EMPLOYEE LIST {'>'} 2021-ABC  </Link> 
-          <div style={{color:"white", fontSize:20, marginTop:"-68px", fontWeight:'bold', marginLeft:10}}>{'>'} MANAGE RECORDS</div>
+          <Link id="dwnlnk" to="/admin/EmployeeList" style={{color:"white", fontSize:15,  marginLeft:15}}>EMPLOYEE LIST {'>'} 2021-ABC  </Link> 
+          <div style={{color:"white", fontSize:25, marginTop:"-6px", fontWeight:'bold', marginLeft:10}}>{'>'} MANAGE RECORDS</div>
           </Row>
 
           <div className="header-body">
