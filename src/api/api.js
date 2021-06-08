@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const url = 'https://quiet-dawn-64616.herokuapp.com/api/'
+const url = 'https://mysterious-plains-04973.herokuapp.com/api/'
 const api = axios.create({
     baseURL: url
 })
